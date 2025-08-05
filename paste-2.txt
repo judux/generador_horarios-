@@ -1,0 +1,351 @@
+ADMINISTRACION EDUCATIVA
+Código: 9797
+Electiva: Sí
+Grupo 1 (TEORICA):
+Docente: HERRERA FIGUEROA EDGAR HUMBERTO
+Horario:
+Jueves, 3:00 - 5:00 pm, Aula A306 (BLOQUE 3)
+Viernes, 1:00 - 3:00 pm, Aula A306 (BLOQUE 3)
+
+
+
+AMBIENTES DE APRENDIZAJE
+Código: 9807
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: JOJOA JOJOA HAROLD ANTONIO
+Horario:
+Miércoles, 11:00 am - 1:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+Jueves, 9:00 - 11:00 am, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+AMBIENTES VIRTUALES DE APRENDIZAJE
+Código: 9790
+Electiva: Sí
+Grupo 1 (TEORICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Lunes, 11:00 am - 1:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Martes, 11:00 am - 1:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+APLICACIONES WEB
+Código: 9788
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: JATIVA ERAZO JAIRO OMAR
+Horario:
+Martes, 7:00 - 9:00 am, Aula A407 (BLOQUE TECNOLOGICO)
+Miércoles, 7:00 - 9:00 am, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+APLICACIONES WEB EN SERIVIDOR
+Código: 9789
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: NARVAEZ CALVACHE DARIO FAVIER
+Horario:
+Martes, 9:00 - 11:00 am, Aula A407 (BLOQUE TECNOLOGICO)
+Miércoles, 9:00 - 11:00 am, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+COMUNICACION Y REDES
+Código: 9808
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: CARLOS FERNANDO GONZALEZ GUZMAN
+Horario:
+Lunes, 5:00 - 7:00 pm, Aula A408 (BLOQUE TECNOLOGICO)
+Miércoles, 3:00 - 5:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+COMUNICACION VISUAL
+Código: 9791
+Electiva: Sí
+Grupo 1 (TEORICA):
+Docente: PAZ SAAVEDRA LUIS EDUARDO
+Horario:
+Jueves, 5:00 - 7:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+Grupo 2 (PRACTICA):
+Cupos: 14 / 28 (14 disponibles)
+Docente: PAZ SAAVEDRA LUIS EDUARDO
+Horario:
+Viernes, 3:00 - 5:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+CORRIENTES PEDAGOGICAS
+Código: 8320
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: JATIVA ERAZO JAIRO OMAR
+Horario:
+Jueves, 9:00 - 11:00 am, Aula A303 (BLOQUE 3)
+Viernes, 9:00 - 11:00 am, Aula A303 (BLOQUE 3)
+
+
+
+DESARROLLO DE SOFTWARE
+Código: 9785
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Martes, 3:00 - 5:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Miércoles, 3:00 - 5:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+DESARROLLO DE SOFTWARE EDUCATIVO
+Código: 9787
+Electiva: No
+Grupo 2 (TEORICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Miércoles, 1:00 - 3:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+Grupo 1 (PRACTICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Viernes, 1:00 - 3:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+DIDACTICA DE LA INFORMATICA
+Código: 4553
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: DELGADO ACHICANOY NATALIA FERNANDA
+Horario:
+Lunes, 5:00 - 7:00 pm, Aula A301 (Bloque 1 Sur B)
+Jueves, 3:00 - 5:00 pm, Aula A302 (BLOQUE 3)
+
+
+
+DISEÑO GRAFICO Y ANIMACION
+Código: 9786
+Electiva: No
+Grupo 1 (PRACTICA):
+Docente: DELGADO ACHICANOY NATALIA FERNANDA
+Horario:
+Lunes, 3:00 - 5:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+Jueves, 5:00 - 7:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+FILOSOFIA E HISTORIA DE LA EDUCACION
+Código: SIN_CODIGO
+Electiva: No (Asumido)
+Grupo 1 (TEORICA):
+Docente: PAZ SAAVEDRA LUIS EDUARDO
+Horario:
+Miércoles, 1:00 - 3:00 pm, Aula A402 (Bloque 1 Sur B)
+Jueves, 1:00 - 3:00 pm, Aula A102 (BLOQUE 3)
+
+
+
+HARDWARE Y SISTEMAS OPERATIVOS
+Código: 6537
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: ROSERO CALDERON OSCAR ANDRES
+Horario:
+Lunes, 3:00 - 5:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+Jueves, 5:00 - 7:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (TEORICA):
+Docente: ROSERO CALDERON OSCAR ANDRES
+Horario:
+Lunes, 5:00 - 7:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+Jueves, 3:00 - 5:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+
+
+INVESTIGACION CUALITATIVA
+Código: 9809
+Electiva: Sí
+Grupo 1 (TEORICA):
+Docente: JOJOA JOJOA HAROLD ANTONIO
+Horario:
+Martes, 1:00 - 3:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: JOJOA JOJOA HAROLD ANTONIO
+Horario:
+Viernes, 9:00 - 11:00 am, Aula A406 (BLOQUE TECNOLOGICO)
+
+
+
+PRACTICA DOCENTE 1
+Código: 1313
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Lunes, 3:00 - 5:00 pm, Aula A306 (BLOQUE 3)
+
+Grupo 2 (TEORICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Lunes, 5:00 - 7:00 pm, Aula A306 (BLOQUE 3)
+
+Grupo 3 (TEORICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Martes, 3:00 - 5:00 pm, Aula A302 (BLOQUE 3)
+
+Grupo 4 (PRACTICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Martes, 5:00 - 7:00 pm, Aula A302 (BLOQUE 3)
+
+Grupo 5 (PRACTICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Miércoles, 3:00 - 5:00 pm, Aula A306 (BLOQUE 3)
+
+Grupo 6 (PRACTICA):
+Docente: ROMO GUERRON JOSE LUIS
+Horario:
+Miércoles, 5:00 - 7:00 pm, Aula A306 (BLOQUE 3)
+
+
+
+PROGRAMACION 1
+Código: 5841
+Electiva: No
+Grupo 13 (PRACTICA):
+Docente: INSUASTY PORTILLA EDWIN GIOVANNI
+Horario:
+Martes, 5:00 - 7:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+Miércoles, 3:00 - 5:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 14:
+Docente: INSUASTY PORTILLA EDWIN GIOVANNI
+Horario:
+Martes, 3:00 - 5:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+Miércoles, 5:00 - 7:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+
+
+PROGRAMACION DE VIDEOJUEGOS
+Código: 9792
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: NARVAEZ CALVACHE DARIO FAVIER
+Horario:
+Martes, 3:00 - 5:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+Jueves, 7:00 - 9:00 am, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+PROGRAMACION 3
+Código: 9810
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: NARVAEZ CALVACHE DARIO FAVIER
+Horario:
+Martes, 5:00 - 7:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+Jueves, 11:00 am - 1:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+PROYECTOS INFORMATICOS
+Código: 8064
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Viernes, 3:00 - 5:00 pm, Aula A401 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: DOMINGUEZ DE LA ROSA JOHN JAIRO
+Horario:
+Jueves, 1:00 - 3:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+
+
+ROBOTICA EDUCATIVA
+Código: 9793
+Electiva: Sí
+Grupo 1 (TEORICA):
+Docente: ORDONEZ QUINTERO CRISTIAN CAMILO
+Horario:
+Lunes, 7:00 - 9:00 am, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: ORDONEZ QUINTERO CRISTIAN CAMILO
+Horario:
+Viernes, 7:00 - 9:00 am, Aula A406 (BLOQUE TECNOLOGICO)
+
+
+
+SOFTWARE DE AUTORIA
+Código: 9812
+Electiva: Sí
+Grupo 1 (PRACTICA):
+Docente: ORDONEZ QUINTERO CRISTIAN CAMILO
+Horario:
+Lunes, 3:00 - 5:00 pm, Aula A401 (BLOQUE TECNOLOGICO)
+Viernes, 5:00 - 7:00 pm, Aula A405 (BLOQUE TECNOLOGICO)
+
+
+
+TECNOLOGIA
+Código: 8061
+Electiva: No (Asumido)
+Grupo 1 (TEORICA):
+Docente: HERRERA FIGUEROA EDGAR HUMBERTO
+Horario:
+Martes, 1:00 - 3:00 pm, Aula A408 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: HERRERA FIGUEROA EDGAR HUMBERTO
+Horario:
+Jueves, 1:00 - 3:00 pm, Aula A406 (BLOQUE TECNOLOGICO)
+
+Grupo 3 (PRACTICA):
+Docente: HERRERA FIGUEROA EDGAR HUMBERTO
+Horario:
+Viernes, 3:00 - 5:00 pm, Aula N/A
+
+
+
+TIC PARA LA EDUCACION
+Código: 9748
+Electiva: No
+Grupo 1 (TEORICA):
+Docente: MORA OVIEDO LUIS EDUARDO
+Horario:
+Miércoles, 5:00 - 7:00 pm, Aula A407 (BLOQUE TECNOLOGICO)
+
+Grupo 3 (TEORICA):
+Docente: MORA OVIEDO LUIS EDUARDO
+Horario:
+Miércoles, 3:00 - 5:00 pm, Aula A302 (BLOQUE TECNOLOGICO)
+
+Grupo 2 (PRACTICA):
+Docente: MORA OVIEDO LUIS EDUARDO
+Horario:
+Viernes, 3:00 - 5:00 pm, Aula A302 (BLOQUE TECNOLOGICO)
+
+Grupo 4 (PRACTICA):
+Docente: MORA OVIEDO LUIS EDUARDO
+Horario:
+Viernes, 5:00 - 8:00 pm, Aula A404 (BLOQUE TECNOLOGICO)

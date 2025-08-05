@@ -1,0 +1,13 @@
+5/15/2025
+ya hice la conexión con la base de datos, tengo materias de prueba que cambiare con los datos reales pero aun me falta organizarlos y verificar información esto dentro de mi carpeta raíz proyecto_horarios y dentro de esta database que el archivo que pobló mi base de datos se llama db_manager.py me creo la base de datos horarios.db
+
+5/16/2025
+-verifique los datos de las materias y cree la base de datos con los datos de las materias reales solo los créditos son de ejemplo que en este caso a todas las materias les puse 2
+- también hice una la carpeta interfaz y dentro de esta cree 2 archivos el cual uno no se para que es y el otro que es el que se conecta con la base de datos para mostrar las materias en la interfaz se llama interfaz_horarios.py hasata ahora todo va bien, solo me falta crear la lógica de asignación de horarios eficiente y mostrar los horarios generados 
+-hice la carpeta lógica y dentro de esta 3 archivos uno init no se para que es lógica.py donde tratare de poner la lógica y la prueba_logica para probar 
+
+5/20/2025 
+-hice un archivo dentro de interfaz al cual lo llame prueba.py me sirvió para darme cuenta que la interfaz estaba muy incompleta y poco a poco la fui mejorando, y he tenido ideas para que la interfaz funcione perfectamente con la lógica y sea intuitiva, veo que me faltaba especificar que uno puede seleccionar las materias fijas que se tendrán en cuenta para hacer un horario por ejemplo materias de el pensum y las complementarias que son materias que el estudiante seleccionara para generar la mejor convinacion de horario posible en caso de que con las de el pensum y obligatorias que quiera no cuadren.
+-agregue también el historial académico donde se guardaran las materias cursadas y la suma de los créditos totales 
+-quiero que si encuentra choques en las materias obligatirias salga un mensaje como "no se pudo encontrar horaio adecuado con esta materia" y te recomiende otra que si haga que el horario funcione bien dentro de tus prferencias
+-posibles mejoras como agregar todo el pensum para llevar el registro de tu semestre 

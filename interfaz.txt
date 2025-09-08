@@ -19,7 +19,7 @@ class AplicacionHorarioModerna:
     def __init__(self, master_window):
         self.master = master_window
         self.master.title("📚 Generador de Horarios - Lic. en Informática")
-        self.master.geometry("1600x900")  # Aumenté la ventana para acomodar mejor el contenido
+        self.master.geometry("1400x800")
         self.master.state('zoomed')  # Maximizar en Windows
         self.master.configure(bg="#F8F9FA")
         
@@ -170,7 +170,7 @@ class AplicacionHorarioModerna:
         main_container = tk.Frame(self.master, bg=self.colores['bg_principal'])
         main_container.pack(fill=tk.BOTH, expand=True, padx=20, pady=(0, 20))
         
-        # Sidebar izquierdo (más ancho)
+        # Sidebar izquierdo (fijo)
         self._crear_sidebar_moderno(main_container)
         
         # Área principal del horario
@@ -236,8 +236,8 @@ class AplicacionHorarioModerna:
         btn_guardar.pack(side=tk.LEFT, padx=5)
 
     def _crear_sidebar_moderno(self, parent):
-        """Crea el sidebar izquierdo moderno con ancho aumentado"""
-        sidebar = tk.Frame(parent, bg=self.colores['bg_sidebar'], width=450)  # Aumenté de 320 a 450
+        """Crea el sidebar izquierdo moderno"""
+        sidebar = tk.Frame(parent, bg=self.colores['bg_sidebar'], width=320)
         sidebar.pack(side=tk.LEFT, fill=tk.Y, padx=(0, 20))
         sidebar.pack_propagate(False)
         
@@ -396,7 +396,7 @@ class AplicacionHorarioModerna:
             self._crear_grupo_moderno(grupos_frame, codigo, nombre_grupo, grupo_data)
 
     def _crear_grupo_moderno(self, parent, codigo_materia, nombre_grupo, grupo_data):
-        """Crea un widget moderno para cada grupo con mejor distribución"""
+        """Crea un widget moderno para cada grupo"""
         grupo_frame = tk.Frame(
             parent,
             bg=self.colores_materias[codigo_materia],
@@ -404,25 +404,28 @@ class AplicacionHorarioModerna:
         )
         grupo_frame.pack(fill="x", padx=15, pady=(0, 10))
 
-        # Header del grupo con mejor distribución
+        # Header del grupo
         grupo_header = tk.Frame(grupo_frame, bg=self.colores_materias[codigo_materia])
         grupo_header.pack(fill="x", padx=10, pady=(10, 5))
 
-        # Botón de agregar - posicionado primero a la derecha
+        # --- INICIO DE LA CORRECCIÓN ---
+
+        # 1. POSICIONAR EL BOTÓN DE AGREGAR PRIMERO
+        # Al posicionarlo primero a la derecha, reserva su espacio antes que cualquier otro elemento.
         btn_agregar = tk.Label(
             grupo_header,
             text="➕",
-            font=("Segoe UI", 16, "bold"),  # Aumenté el tamaño del icono
+            font=("Segoe UI", 14),
             bg=self.colores['success'],
             fg="white",
             cursor="hand2",
-            padx=10, pady=6,  # Aumenté el padding para hacer el botón más grande
-            relief="flat"
+            padx=8, pady=4
         )
-        btn_agregar.pack(side=tk.RIGHT, padx=(10, 0))  # Mayor separación del texto
+        btn_agregar.pack(side=tk.RIGHT, anchor='ne', padx=(5,0)) # Anclado a la esquina superior derecha
         btn_agregar.bind("<Button-1>", lambda e, c=codigo_materia, g=nombre_grupo: self._agregar_grupo_al_horario(c, g))
 
-        # Etiqueta del docente y grupo - ahora con más espacio
+        # 2. POSICIONAR LA ETIQUETA DEL DOCENTE DESPUÉS
+        # Ahora, esta etiqueta se expandirá para llenar solo el espacio RESTANTE.
         docente_label = tk.Label(
             grupo_header,
             text=f"👨‍🏫 {grupo_data['docente']} • Grupo {nombre_grupo}",
@@ -431,11 +434,13 @@ class AplicacionHorarioModerna:
             fg=self.colores['text_primary'],
             anchor="w",
             justify="left",
-            wraplength=320  # Aumenté el wraplength para aprovechar el ancho extra
+            wraplength=200  # Se mantiene la mejora para ajustar texto largo
         )
         docente_label.pack(side=tk.LEFT, fill="x", expand=True, pady=4)
 
-        # Horarios del grupo
+        # --- FIN DE LA CORRECCIÓN ---
+
+        # Horarios del grupo (esto no necesita cambios)
         for sesion in grupo_data['sesiones']:
             horario_label = tk.Label(
                 grupo_frame,
@@ -448,7 +453,7 @@ class AplicacionHorarioModerna:
             horario_label.pack(fill="x", padx=15, pady=(0, 5))
 
     def _crear_area_horario_moderna(self, parent):
-        """Crea el área principal del horario moderna con ancho ajustado"""
+        """Crea el área principal del horario moderna"""
         horario_frame = tk.Frame(parent, bg=self.colores['bg_card'])
         horario_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         
@@ -507,7 +512,7 @@ class AplicacionHorarioModerna:
         )
 
     def _crear_grilla_moderna(self):
-        """Crea la grilla moderna del horario con celdas más anchas"""
+        """Crea la grilla moderna del horario"""
         self.grilla_widgets = {}
         
         # Header de horas (esquina)
@@ -549,15 +554,15 @@ class AplicacionHorarioModerna:
             )
             label_hora.grid(row=i+1, column=0, sticky="nsew", padx=1, pady=1)
             
-            # Celdas del horario - aumenté el ancho
+            # Celdas del horario
             for j, dia in enumerate(self.dias):
                 celda_frame = tk.Frame(
                     self.frame_grilla, 
                     bg="white",
                     relief="solid",
                     bd=1,
-                    width=200,  # Aumenté de 180 a 200
-                    height=55   # Aumenté ligeramente la altura también
+                    width=180, 
+                    height=50
                 )
                 celda_frame.grid(row=i+1, column=j+1, sticky="nsew", padx=1, pady=1)
                 celda_frame.grid_propagate(False)
@@ -573,6 +578,11 @@ class AplicacionHorarioModerna:
                     font=("Segoe UI", 8)
                 )
                 label_vacio.pack(fill="both", expand=True)
+                
+                # Eventos de hover
+                celda_frame.bind("<Enter>", lambda e, d=dia, h=hora: self._on_celda_hover(d, h))
+                celda_frame.bind("<Leave>", lambda e: self._on_celda_leave())
+
         # Configurar grid weights
         for i in range(len(self.horas) + 1):
             self.frame_grilla.grid_rowconfigure(i, weight=1)
@@ -747,10 +757,10 @@ class AplicacionHorarioModerna:
                 info_frame = tk.Frame(container, bg=color)
                 info_frame.pack(fill="both", expand=True, padx=5, pady=3)
                 
-                # Nombre de la materia (con mejor manejo de texto largo)
+                # Nombre de la materia (truncado si es muy largo)
                 nombre_display = data['info']['nombre']
-                if len(nombre_display) > 18:  # Aumenté el límite
-                    nombre_display = nombre_display[:15] + "..."
+                if len(nombre_display) > 15:
+                    nombre_display = nombre_display[:12] + "..."
                 
                 label_materia = tk.Label(
                     info_frame,
@@ -758,8 +768,7 @@ class AplicacionHorarioModerna:
                     bg=color,
                     font=("Segoe UI", 9, "bold"),
                     fg=self.colores['text_primary'],
-                    justify=tk.CENTER,
-                    wraplength=180  # Añadí wraplength para mejor ajuste
+                    justify=tk.CENTER
                 )
                 label_materia.pack()
                 

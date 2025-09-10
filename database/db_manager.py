@@ -53,7 +53,7 @@ def crear_tablas(conn):
                 docente TEXT,
                 salon TEXT,
                 FOREIGN KEY (id_grupo_materia_fk) REFERENCES GruposMateria (id_grupo_materia) ON DELETE CASCADE ON UPDATE CASCADE
-            );
+            );git
         """)
         conn.commit()
         logging.info("Tablas creadas o ya existentes.")

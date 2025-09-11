@@ -39,9 +39,9 @@ class AppConfig:
         'bg_principal': '#F8F9FA',
         'bg_sidebar': '#FFFFFF',
         'bg_card': '#FFFFFF',
-        'primary': '#3B82F6',
-        'primary_light': '#DBEAFE',
-        'secondary': '#6B7280',
+        'primary': '#00834D',          # Verde Udenar
+        'primary_light': '#D9F9E6',   # Verde claro
+        'secondary': '#FBBF24',       # Amarillo Udenar
         'success': '#10B981',
         'warning': '#F59E0B',
         'danger': '#EF4444',

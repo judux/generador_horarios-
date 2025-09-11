@@ -4,6 +4,7 @@ Componente de barra lateral para mostrar y buscar materias.
 
 import customtkinter as ctk
 import logging
+from PIL import Image # Necesario para cargar imágenes con CTk
 from typing import Callable, Optional, Dict, Any
 
 from interfaz.controllers.main_controller import MainController
@@ -45,23 +46,35 @@ class SidebarMaterias:
         self._crear_header()
         self._crear_barra_busqueda()
         self._crear_area_scroll()
-        
+
         self._filtrar_y_mostrar_materias() # Carga inicial
 
     def _crear_header(self):
         """Crea el título o header visual del sidebar."""
-        header_frame = ctk.CTkFrame(self.sidebar_frame, fg_color="transparent", height=50)
-        header_frame.pack(fill="x", padx=20, pady=(10, 5))
-        header_frame.pack_propagate(False)
+        header_frame = ctk.CTkFrame(self.sidebar_frame, fg_color="transparent")
+        header_frame.pack(fill="x", padx=20, pady=(20, 10))
+
+        # Cargar logo de la universidad
+        try:
+            logo_image = ctk.CTkImage(
+                light_image=Image.open("assets/images/logo_udenar.png"),
+                size=(150, 45) # Ajusta el tamaño según tu logo
+            )
+            logo_label = ctk.CTkLabel(header_frame, image=logo_image, text="")
+            logo_label.pack()
+        except FileNotFoundError:
+            logger.warning("No se encontró el archivo del logo 'assets/images/logo_udenar.png'.")
+            logo_label = ctk.CTkLabel(header_frame, text="U. de Nariño", font=("Segoe UI", 18, "bold"))
+            logo_label.pack()
 
         label_titulo = ctk.CTkLabel(
             header_frame,
             text="Materias Disponibles",
-            font=("Segoe UI", 16, "bold"),
+            font=("Segoe UI", 14, "bold"),
             text_color=self.config.COLORS['text_primary'],
             anchor="w"
         )
-        label_titulo.pack(side="left", fill="both", expand=True)
+        label_titulo.pack(side="left", fill="x", expand=True, pady=(10, 0))
 
     def _crear_barra_busqueda(self):
         """Crea el campo de búsqueda."""

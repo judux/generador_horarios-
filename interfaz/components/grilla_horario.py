@@ -121,27 +121,17 @@ class GrillaHorario:
             corner_radius=0
         )
         self.canvas_horario.create_window((0, 0), window=self.frame_grilla, anchor="nw")
-        
+
         # Configurar eventos de scroll
         self._configurar_scroll()
-    
+
     def _configurar_scroll(self):
         """Configura el comportamiento del scroll"""
         def _on_frame_configure(event):
             self.canvas_horario.configure(scrollregion=self.canvas_horario.bbox("all"))
-        
+
         def _on_canvas_configure(event):
-            # Mantener el frame interno del tamaño mínimo necesario
-            canvas_width = event.width
-            canvas_height = event.height
-            
-            frame_width = self.frame_grilla.winfo_reqwidth()
-            frame_height = self.frame_grilla.winfo_reqheight()
-            
-            new_width = max(canvas_width, frame_width)
-            new_height = max(canvas_height, frame_height)
-            
-            self.canvas_horario.configure(scrollregion=(0, 0, new_width, new_height))
+            self.canvas_horario.itemconfig(self.canvas_horario.create_window((0, 0), window=self.frame_grilla, anchor="nw"), width=event.width)
         
         def _on_mousewheel(event):
             self.canvas_horario.yview_scroll(int(-1 * (event.delta / 120)), "units")
@@ -181,7 +171,7 @@ class GrillaHorario:
             self.frame_grilla,
             text="Hora",
             font=("Segoe UI", 11, "bold"),
-            fg_color=self.config.COLORS['primary'],
+            fg_color=self.config.COLORS['primary'], # Usará el nuevo verde
             text_color="white"
         )
         header_esquina.grid(row=0, column=0, sticky="nsew", padx=(0,1), pady=(0,1))
@@ -193,7 +183,7 @@ class GrillaHorario:
                 self.frame_grilla,
                 text=f"{dia}",
                 font=("Segoe UI", 11, "bold"),
-                fg_color=self.config.COLORS['primary'],
+                fg_color=self.config.COLORS['primary'], # Usará el nuevo verde
                 text_color="white"
             )
             header_dia.grid(row=0, column=i+1, sticky="nsew", padx=(0,1), pady=(0,1))
@@ -214,7 +204,7 @@ class GrillaHorario:
             self.frame_grilla,
             text=hora,
             font=("Segoe UI", 10, "bold"),
-            fg_color=self.config.COLORS['primary_light'],
+            fg_color=self.config.COLORS['primary_light'], # Usará el nuevo verde claro
             text_color=self.config.COLORS['primary']
         )
         label_hora.grid(row=fila, column=0, sticky="nsew", padx=(0,1), pady=(0,1))
@@ -227,8 +217,7 @@ class GrillaHorario:
             border_color=self.config.COLORS['border'],
             border_width=1,
             corner_radius=0,
-            width=200,
-            height=55
+            height=65  # Aumentamos un poco la altura para mejor visualización
         )
         celda_frame.grid(row=fila, column=columna, sticky="nsew")
         celda_frame.grid_propagate(False)
@@ -261,6 +250,11 @@ class GrillaHorario:
         def on_click(event):
             if self.on_celda_seleccionada:
                 self.on_celda_seleccionada(dia, hora)
+
+        def on_right_click(event):
+            # Solo eliminar si la celda está ocupada
+            if (dia, hora) in self.controller.obtener_horario_actual():
+                self.controller.eliminar_del_horario(dia, hora)
         
         # Aplicar eventos al frame y sus hijos
         widgets_celda = [celda_frame] + list(celda_frame.winfo_children())
@@ -268,16 +262,20 @@ class GrillaHorario:
         for widget in widgets_celda:
             widget.bind("<Enter>", on_enter)
             widget.bind("<Leave>", on_leave)
-            widget.bind("<Button-1>", on_click)
+            widget.bind("<Button-1>", on_click) # Clic izquierdo
+            widget.bind("<Button-3>", on_right_click) # Clic derecho
     
     def _configurar_grid_weights(self, num_dias: int, num_horas: int):
         """Configura los pesos del grid para redimensionamiento"""
+        # Columna de horas con peso 0 para que no se expanda
+        self.frame_grilla.grid_columnconfigure(0, weight=0)
+        
         # Configurar filas
         for i in range(num_horas + 1):  # +1 por el header
             self.frame_grilla.grid_rowconfigure(i, weight=1)
         
-        # Configurar columnas
-        for j in range(num_dias + 1):  # +1 por la columna de horas
+        # Configurar columnas de los días para que se expandan
+        for j in range(1, num_dias + 1):  # Desde 1 para omitir la columna de horas
             self.frame_grilla.grid_columnconfigure(j, weight=1)
     
     def actualizar_grilla(self):
@@ -340,37 +338,11 @@ class GrillaHorario:
         container = ctk.CTkFrame(celda_frame, fg_color=color_materia, corner_radius=4)
         container.pack(fill="both", expand=True, padx=2, pady=2)
         
-        # Botón eliminar
-        btn_eliminar = self._crear_boton_eliminar(container, dia, hora)
-        
         # Información de la materia
         self._crear_info_materia(container, data)
         
         # Reconfigurar eventos
         self._configurar_eventos_celda(container, dia, hora)
-    
-    def _crear_boton_eliminar(self, parent: ctk.CTkFrame, dia: str, hora: str) -> ctk.CTkLabel:
-        """Crea el botón de eliminar para una celda"""
-        btn_eliminar = ctk.CTkLabel(
-            parent,
-            text="✕",
-            font=("Segoe UI", 8),
-            text_color="white",
-            fg_color=self.config.COLORS['danger'],
-            width=16,
-            height=16,
-            corner_radius=8,
-            cursor="hand2",
-        )
-        btn_eliminar.place(relx=1.0, rely=0.0, anchor="ne")
-        
-        def on_eliminar(event):
-            self.controller.eliminar_del_horario(dia, hora)
-            if self.on_horario_modificado:
-                self.on_horario_modificado()
-        
-        btn_eliminar.bind("<Button-1>", on_eliminar)
-        return btn_eliminar
     
     def _crear_info_materia(self, parent: ctk.CTkFrame, data: Dict[str, Any]):
         """Crea la información visual de la materia en la celda"""

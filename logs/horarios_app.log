@@ -84,3 +84,365 @@ AttributeError: 'ModernTheme' object has no attribute 'crear_label_titulo'. Did 
 2025-09-10 19:10:28,569 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
 2025-09-10 19:10:28,746 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
 2025-09-10 19:10:28,746 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:16:59,728 - root - INFO - Logging configurado exitosamente.
+2025-09-10 19:16:59,736 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 19:16:59,840 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 19:17:15,491 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 19:17:15,492 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 19:17:15,510 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de ADMINISTRACION EDUCATIVA
+2025-09-10 19:17:22,402 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-10 19:17:22,402 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-10 19:17:22,402 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de AMBIENTES DE APRENDIZAJE
+2025-09-10 19:17:24,711 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:17:24,712 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:17:24,713 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de AMBIENTES VIRTUALES DE APRENDIZAJE
+2025-09-10 19:17:26,530 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:17:26,530 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:17:26,530 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de AMBIENTES VIRTUALES DE APRENDIZAJE
+2025-09-10 19:17:34,688 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:17:34,688 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:17:34,688 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de APLICACIONES WEB
+2025-09-10 19:22:09,406 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:09,406 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:14,290 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:14,291 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:15,361 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:15,361 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:15,684 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:15,685 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:19,073 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:19,073 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:19,808 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:19,809 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:20,270 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:20,270 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:20,524 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:20,524 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:20,735 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:20,736 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:20,930 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:20,931 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:21,208 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:21,208 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:23,002 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:23,002 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:23,384 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:23,384 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:23,712 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:23,712 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:24,073 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:24,073 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:24,634 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:24,634 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:22:25,826 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:22:25,826 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:26:49,882 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-10 19:26:49,882 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-10 19:26:49,883 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de DESARROLLO DE SOFTWARE
+2025-09-10 19:26:57,157 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 19:26:57,157 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:26:57,159 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de DESARROLLO DE SOFTWARE
+2025-09-10 19:27:04,723 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
+2025-09-10 19:27:04,723 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
+2025-09-10 19:27:11,804 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
+2025-09-10 19:27:11,804 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
+2025-09-10 19:27:11,804 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de DESARROLLO DE SOFTWARE EDUCATIVO
+2025-09-10 19:27:16,985 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
+2025-09-10 19:27:16,985 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
+2025-09-10 19:27:17,818 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
+2025-09-10 19:27:17,818 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
+2025-09-10 19:27:19,772 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
+2025-09-10 19:27:19,772 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
+2025-09-10 19:28:43,465 - interfaz.components.sidebar_materias - INFO - Click en grupo: FHILO_ED_SC - Grupo 1
+2025-09-10 19:28:43,465 - interfaz.main_window - INFO - Materia seleccionada para agregar: FHILO_ED_SC, Grupo: Grupo 1
+2025-09-10 19:28:46,000 - interfaz.components.sidebar_materias - INFO - Click en grupo: 6537 - Grupo 1
+2025-09-10 19:28:46,000 - interfaz.main_window - INFO - Materia seleccionada para agregar: 6537, Grupo: Grupo 1
+2025-09-10 19:28:46,000 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de HARDWARE Y SISTEMAS OPERATIVOS
+2025-09-10 19:28:48,122 - interfaz.components.sidebar_materias - INFO - Click en grupo: 6537 - Grupo 2
+2025-09-10 19:28:48,123 - interfaz.main_window - INFO - Materia seleccionada para agregar: 6537, Grupo: Grupo 2
+2025-09-10 19:28:48,716 - interfaz.components.sidebar_materias - INFO - Click en grupo: 6537 - Grupo 2
+2025-09-10 19:28:48,717 - interfaz.main_window - INFO - Materia seleccionada para agregar: 6537, Grupo: Grupo 2
+2025-09-10 19:28:48,939 - interfaz.components.sidebar_materias - INFO - Click en grupo: 6537 - Grupo 2
+2025-09-10 19:28:48,940 - interfaz.main_window - INFO - Materia seleccionada para agregar: 6537, Grupo: Grupo 2
+2025-09-10 19:28:49,114 - interfaz.components.sidebar_materias - INFO - Click en grupo: 6537 - Grupo 2
+2025-09-10 19:28:49,114 - interfaz.main_window - INFO - Materia seleccionada para agregar: 6537, Grupo: Grupo 2
+2025-09-10 19:28:56,198 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:28:56,199 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:28:56,528 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:28:56,528 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:28:58,038 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:28:58,039 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:28:58,262 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:28:58,262 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:28:58,406 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:28:58,406 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:29:00,250 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 19:29:00,250 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 19:29:00,251 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de APLICACIONES WEB EN SERVIDOR
+2025-09-10 19:29:06,437 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-10 19:29:06,437 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-10 19:29:08,324 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:29:08,325 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:29:09,082 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:29:09,082 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:29:09,246 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:29:09,246 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:29:10,435 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 19:29:10,435 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 19:29:10,916 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 19:29:10,916 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 19:29:11,172 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 19:29:11,172 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 19:29:16,320 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:29:16,321 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:29:16,697 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:29:16,697 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:29:16,956 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:29:16,957 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:29:17,184 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:29:17,185 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:29:17,302 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:29:17,302 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:29:17,873 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 19:29:17,873 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 19:29:18,308 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 19:29:18,308 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 19:29:20,366 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-10 19:29:20,366 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-10 19:29:21,606 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-10 19:29:21,606 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-10 19:29:23,214 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-10 19:29:23,215 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-10 19:29:23,459 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 19:29:23,459 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:29:23,638 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 19:29:23,639 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:41:54,976 - root - INFO - Logging configurado exitosamente.
+2025-09-10 19:41:54,984 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 19:41:55,089 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 19:45:50,651 - root - INFO - Logging configurado exitosamente.
+2025-09-10 19:45:50,659 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 19:45:50,746 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 19:48:51,670 - root - INFO - Logging configurado exitosamente.
+2025-09-10 19:48:51,678 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 19:48:51,765 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 19:49:44,261 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 19:49:44,262 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 19:49:44,280 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de ADMINISTRACION EDUCATIVA
+2025-09-10 19:49:48,316 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 19:49:48,317 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 19:49:48,317 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de AMBIENTES VIRTUALES DE APRENDIZAJE
+2025-09-10 19:49:49,344 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 19:49:49,345 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 19:49:49,345 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de AMBIENTES VIRTUALES DE APRENDIZAJE
+2025-09-10 19:49:51,038 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 19:49:51,039 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 19:49:51,039 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de APLICACIONES WEB EN SERVIDOR
+2025-09-10 19:49:53,600 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-10 19:49:53,600 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-10 19:49:53,601 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de COMUNICACION VISUAL
+2025-09-10 19:49:55,110 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
+2025-09-10 19:49:55,111 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
+2025-09-10 19:49:55,111 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de COMUNICACION VISUAL
+2025-09-10 19:49:59,115 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 19:49:59,116 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 19:49:59,118 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de CORRIENTES PEDAGOGICAS
+2025-09-10 19:50:05,313 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-10 19:50:05,314 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-10 19:50:05,315 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 1 de DESARROLLO DE SOFTWARE
+2025-09-10 19:50:07,359 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 19:50:07,360 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:50:07,361 - logica.services.horario_service - INFO - Grupo agregado al horario: Grupo 2 de DESARROLLO DE SOFTWARE
+2025-09-10 19:50:08,276 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 19:50:08,276 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 19:57:29,260 - root - INFO - Logging configurado exitosamente.
+2025-09-10 19:57:29,270 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 19:57:29,375 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 20:01:06,023 - root - INFO - Logging configurado exitosamente.
+2025-09-10 20:01:06,031 - database.connection - INFO - Conexión exitosa a la base de datos: C:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 20:01:06,119 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 20:01:17,322 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:17,323 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:18,386 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:18,386 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:18,878 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:18,879 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:19,299 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:19,299 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:19,476 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:19,477 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:19,649 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:19,650 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:19,823 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:19,823 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:19,983 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:01:19,983 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:01:20,163 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:20,163 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:20,303 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:20,304 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:20,464 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:20,465 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:38,261 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:38,262 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:38,536 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:38,537 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:38,682 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:38,683 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:38,834 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:01:38,834 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:01:39,690 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:01:39,690 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:01:39,873 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:01:39,874 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:01:40,030 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:01:40,031 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:01:41,943 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 20:01:41,944 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 20:01:42,108 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 20:01:42,109 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 20:01:42,264 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 20:01:42,265 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 20:01:43,443 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 20:01:43,443 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 20:01:43,612 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 20:01:43,613 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 20:01:43,768 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-10 20:01:43,769 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-10 20:01:44,959 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-10 20:01:44,960 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-10 20:01:45,317 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-10 20:01:45,318 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-10 20:03:02,979 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:03:02,980 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:03:03,167 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:03:03,168 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:03:03,309 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:03:03,309 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:03:03,471 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:03:03,471 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:03:03,639 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 20:03:03,640 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 20:03:04,069 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 20:03:04,070 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 20:03:04,237 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 20:03:04,238 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 20:03:05,251 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:03:05,251 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:03:05,425 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:03:05,426 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:03:05,555 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:03:05,555 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:03:05,735 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 20:03:05,736 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 20:03:06,007 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:03:06,007 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:03:06,175 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:03:06,176 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 20:03:06,357 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-10 20:03:06,357 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-10 21:16:39,522 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:16:39,537 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:16:39,660 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:19:20,602 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:19:20,610 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:19:20,697 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:19:24,521 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:24,522 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:25,470 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:25,470 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:26,034 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:26,035 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:26,224 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:26,225 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:26,734 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:26,735 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:26,913 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:26,914 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:27,336 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:27,337 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:27,578 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:27,579 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:27,774 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:27,775 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:27,939 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:27,940 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:28,113 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:28,114 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:28,700 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:28,701 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:19:59,842 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:19:59,842 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:20:06,399 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 21:20:06,400 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 21:20:06,558 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 21:20:06,558 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 21:20:08,462 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 21:20:08,463 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 21:20:08,672 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 21:20:08,673 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 21:30:54,394 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:30:54,396 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:30:54,505 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:31:01,056 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-10 21:31:01,056 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-10 21:34:38,022 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:34:38,030 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:34:38,117 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:34:42,430 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:34:42,430 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:34:43,047 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:34:43,048 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:34:43,424 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:34:43,425 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:34:43,569 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:34:43,569 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:34:43,773 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:34:43,774 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:39:15,526 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:39:15,527 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:39:46,855 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:39:46,863 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:39:46,964 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:39:49,434 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-10 21:39:49,435 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-10 21:39:52,132 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 21:39:52,132 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 21:43:53,286 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:43:53,296 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:43:53,396 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:43:55,895 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 21:43:55,896 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 21:43:58,998 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-10 21:43:58,999 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-10 21:47:23,797 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:47:23,805 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:47:23,898 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:47:27,521 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-10 21:47:27,522 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-10 21:50:38,869 - root - INFO - Logging configurado exitosamente.
+2025-09-10 21:50:38,877 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 21:50:38,972 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 21:50:43,376 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-10 21:50:43,376 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-10 21:50:46,052 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-10 21:50:46,053 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-10 22:01:33,049 - root - INFO - Logging configurado exitosamente.
+2025-09-10 22:01:33,058 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-10 22:01:33,158 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-10 22:01:35,824 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 22:01:35,825 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 22:01:36,427 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 22:01:36,427 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 22:01:36,523 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-10 22:01:36,523 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-10 22:01:41,623 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-10 22:01:41,623 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-10 22:01:49,009 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-10 22:01:49,010 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-10 22:01:56,850 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-10 22:01:56,851 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-10 22:02:04,584 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-10 22:02:04,585 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-10 22:02:50,301 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-10 22:02:50,302 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1

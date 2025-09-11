@@ -1,9 +1,9 @@
 """
 Servicio de lógica de negocio para manejo de horarios
 """
-
+from __future__ import annotations
 import logging
-from typing import Dict, List, Tuple, Optional
+from typing import Dict, List, Tuple, Optional, Callable, Any
 from datetime import datetime, timedelta
 from database.connection import DatabaseManager
 from database.repositories.materia_repository import MateriaRepository
@@ -13,6 +13,17 @@ from database.models import HorarioAsignado, Materia, GrupoMateria, SesionClase
 from logica.services.validacion_service import ValidacionService
 
 logger = logging.getLogger(__name__)
+
+class Command:
+    """Clase base para el patrón Command."""
+    def __init__(self, service: 'HorarioService'):
+        self.service = service
+
+    def execute(self) -> Dict[str, Any]:
+        raise NotImplementedError
+
+    def undo(self) -> Dict[str, Any]:
+        raise NotImplementedError
 
 class HorarioService:
     """Servicio para la lógica de negocio de horarios"""
@@ -27,6 +38,7 @@ class HorarioService:
         # Estado del horario actual
         self.horario_asignado: Dict[Tuple[str, str], HorarioAsignado] = {}
         self.total_creditos = 0
+        self.materias_agregadas: Dict[str, int] = {} # Para contar créditos por materia
     
     def obtener_horario_actual(self) -> Dict[Tuple[str, str], HorarioAsignado]:
         """Obtiene el horario actualmente asignado"""
@@ -35,7 +47,128 @@ class HorarioService:
     def obtener_total_creditos(self) -> int:
         """Obtiene el total de créditos del horario actual"""
         return self.total_creditos
-    
+
+    def crear_comando_agregar_grupo(self, codigo_materia: str, nombre_grupo: str) -> Command:
+        """Crea un comando para agregar un grupo al horario."""
+        return AgregarGrupoCommand(self, codigo_materia, nombre_grupo)
+
+    def crear_comando_eliminar_grupo(self, dia: str, hora: str) -> Optional[Command]:
+        """Crea un comando para eliminar un grupo del horario."""
+        clave_horario = (dia, hora)
+        if clave_horario not in self.horario_asignado:
+            return None
+        
+        asignacion = self.horario_asignado[clave_horario]
+        codigo_materia = asignacion.materia.codigo_materia
+        nombre_grupo = asignacion.grupo.nombre_grupo
+        
+        return EliminarGrupoCommand(self, codigo_materia, nombre_grupo)
+
+    def _internal_agregar_grupo(self, codigo_materia: str, nombre_grupo: str) -> Dict[str, Any]:
+        """Lógica interna para agregar un grupo. Usado por el comando."""
+        materia = self.materia_repo.obtener_por_codigo(codigo_materia)
+        grupo = self.grupo_repo.obtener_por_materia_y_nombre(codigo_materia, nombre_grupo)
+        sesiones = self.sesion_repo.obtener_por_grupo(grupo.id_grupo_materia)
+
+        # Agregar las sesiones al horario
+        self._agregar_sesiones_al_horario(materia, grupo, sesiones)
+        
+        creditos_materia = materia.creditos or 0
+        if codigo_materia not in self.materias_agregadas:
+            self.total_creditos += creditos_materia
+            self.materias_agregadas[codigo_materia] = 1
+        else:
+            self.materias_agregadas[codigo_materia] += 1
+
+        return {
+            'exito': True,
+            'mensaje': f"'{nombre_grupo}' de {materia.nombre_materia} agregado.",
+            'codigo_materia': codigo_materia,
+            'nombre_grupo': nombre_grupo
+        }
+
+    def _internal_eliminar_grupo(self, codigo_materia: str, nombre_grupo: str) -> Dict[str, Any]:
+        """Lógica interna para eliminar un grupo. Usado por el comando."""
+        claves_a_eliminar = []
+        materia_info = None
+        for clave, asig in self.horario_asignado.items():
+            if (asig.materia.codigo_materia == codigo_materia and 
+                asig.grupo.nombre_grupo == nombre_grupo):
+                claves_a_eliminar.append(clave)
+                if not materia_info:
+                    materia_info = asig.materia
+
+        for clave in claves_a_eliminar:
+            del self.horario_asignado[clave]
+
+        if materia_info:
+            self.materias_agregadas[codigo_materia] -= 1
+            if self.materias_agregadas[codigo_materia] == 0:
+                self.total_creditos -= (materia_info.creditos or 0)
+                del self.materias_agregadas[codigo_materia]
+
+        return {
+            'exito': True,
+            'mensaje': f"Grupo '{nombre_grupo}' de {materia_info.nombre_materia} eliminado.",
+            'codigo_materia': codigo_materia,
+            'nombre_grupo': nombre_grupo
+        }
+
+    def _verificar_conflictos_horario(self, sesiones: List[SesionClase]) -> List[Dict[str, str]]:
+        """Verifica si hay conflictos de horario con las sesiones a agregar"""
+        conflictos = []
+        
+        for sesion in sesiones:
+            # Generar todas las horas que ocupa la sesión
+            horas_sesion = self._generar_horas_sesion(sesion)
+            
+            for dia, hora in horas_sesion:
+                clave = (dia, hora)
+                if clave in self.horario_asignado:
+                    asignacion_existente = self.horario_asignado[clave]
+                    conflictos.append({
+                        'dia': dia,
+                        'hora': hora,
+                        'materia_existente': asignacion_existente.materia.nombre_materia
+                    })
+        
+        return conflictos
+
+    def _generar_horas_sesion(self, sesion: SesionClase) -> List[Tuple[str, str]]:
+        """Genera lista de tuplas (dia, hora) que ocupa una sesión"""
+        horas = []
+        
+        try:
+            hora_inicio_dt = datetime.strptime(sesion.hora_inicio, "%H:%M")
+            hora_fin_dt = datetime.strptime(sesion.hora_fin, "%H:%M")
+            
+            hora_actual = hora_inicio_dt
+            while hora_actual < hora_fin_dt:
+                hora_str = hora_actual.strftime("%H:%M")
+                horas.append((sesion.dia_semana, hora_str))
+                hora_actual += timedelta(hours=1)
+                
+        except ValueError as e:
+            logger.error(f"Error procesando horas de sesión {sesion.id_sesion}: {e}")
+        
+        return horas
+
+    def _agregar_sesiones_al_horario(self, materia: Materia, grupo: GrupoMateria, sesiones: List[SesionClase]):
+        """Agrega las sesiones de un grupo al horario"""
+        for sesion in sesiones:
+            horas_sesion = self._generar_horas_sesion(sesion)
+            
+            for dia, hora in horas_sesion:
+                horario_asignado = HorarioAsignado(
+                    materia=materia,
+                    grupo=grupo,
+                    sesion=sesion,
+                    dia=dia,
+                    hora=hora
+                )
+                
+                self.horario_asignado[(dia, hora)] = horario_asignado
+
     def agregar_grupo_al_horario(self, codigo_materia: str, nombre_grupo: str) -> Dict[str, any]:
         """
         Agrega un grupo de materia al horario
@@ -94,7 +227,7 @@ class HorarioService:
             
             # Agregar al horario
             self._agregar_sesiones_al_horario(materia, grupo_encontrado, sesiones)
-            self.total_creditos += materia.creditos or 0
+            self._actualizar_creditos_agregar(materia)
             
             logger.info(f"Grupo agregado al horario: {nombre_grupo} de {materia.nombre_materia}")
             
@@ -113,6 +246,14 @@ class HorarioService:
                 'mensaje': f'Error interno: {str(e)}',
                 'tipo': 'error'
             }
+
+    def _actualizar_creditos_agregar(self, materia: Materia):
+        """Actualiza los créditos al agregar un grupo, evitando doble conteo."""
+        codigo = materia.codigo_materia
+        if codigo not in self.materias_agregadas:
+            self.total_creditos += materia.creditos or 0
+            self.materias_agregadas[codigo] = 0
+        self.materias_agregadas[codigo] += 1
     
     def eliminar_del_horario(self, dia: str, hora: str) -> Dict[str, any]:
         """
@@ -132,7 +273,6 @@ class HorarioService:
             asignacion = self.horario_asignado[clave_horario]
             codigo_materia = asignacion.materia.codigo_materia
             nombre_grupo = asignacion.grupo.nombre_grupo
-            creditos = asignacion.materia.creditos or 0
             
             # Encontrar y eliminar todas las horas de este grupo específico
             claves_a_eliminar = []
@@ -146,7 +286,7 @@ class HorarioService:
                 del self.horario_asignado[clave]
             
             # Actualizar créditos
-            self.total_creditos -= creditos
+            self._actualizar_creditos_eliminar(asignacion.materia)
             
             logger.info(f"Grupo eliminado del horario: {nombre_grupo} de {asignacion.materia.nombre_materia}")
             
@@ -154,7 +294,7 @@ class HorarioService:
                 'exito': True,
                 'mensaje': f'Grupo {nombre_grupo} eliminado del horario',
                 'tipo': 'success',
-                'creditos_eliminados': creditos,
+                'creditos_eliminados': asignacion.materia.creditos or 0,
                 'total_creditos': self.total_creditos
             }
             
@@ -165,6 +305,15 @@ class HorarioService:
                 'mensaje': f'Error interno: {str(e)}',
                 'tipo': 'error'
             }
+
+    def _actualizar_creditos_eliminar(self, materia: Materia):
+        """Actualiza los créditos al eliminar un grupo."""
+        codigo = materia.codigo_materia
+        if codigo in self.materias_agregadas:
+            self.materias_agregadas[codigo] -= 1
+            if self.materias_agregadas[codigo] == 0:
+                self.total_creditos -= materia.creditos or 0
+                del self.materias_agregadas[codigo]
     
     def limpiar_horario(self) -> Dict[str, any]:
         """Limpia completamente el horario"""
@@ -175,6 +324,7 @@ class HorarioService:
             
             self.horario_asignado.clear()
             self.total_creditos = 0
+            self.materias_agregadas.clear()
             
             logger.info("Horario limpiado completamente")
             
@@ -251,61 +401,6 @@ class HorarioService:
             resultado['recomendaciones'].append('Se recomienda reducir la cantidad de créditos')
         
         return resultado
-    
-    def _verificar_conflictos_horario(self, sesiones: List[SesionClase]) -> List[Dict[str, str]]:
-        """Verifica si hay conflictos de horario con las sesiones a agregar"""
-        conflictos = []
-        
-        for sesion in sesiones:
-            # Generar todas las horas que ocupa la sesión
-            horas_sesion = self._generar_horas_sesion(sesion)
-            
-            for dia, hora in horas_sesion:
-                clave = (dia, hora)
-                if clave in self.horario_asignado:
-                    asignacion_existente = self.horario_asignado[clave]
-                    conflictos.append({
-                        'dia': dia,
-                        'hora': hora,
-                        'materia_existente': asignacion_existente.materia.nombre_materia
-                    })
-        
-        return conflictos
-    
-    def _generar_horas_sesion(self, sesion: SesionClase) -> List[Tuple[str, str]]:
-        """Genera lista de tuplas (dia, hora) que ocupa una sesión"""
-        horas = []
-        
-        try:
-            hora_inicio_dt = datetime.strptime(sesion.hora_inicio, "%H:%M")
-            hora_fin_dt = datetime.strptime(sesion.hora_fin, "%H:%M")
-            
-            hora_actual = hora_inicio_dt
-            while hora_actual < hora_fin_dt:
-                hora_str = hora_actual.strftime("%H:%M")
-                horas.append((sesion.dia_semana, hora_str))
-                hora_actual += timedelta(hours=1)
-                
-        except ValueError as e:
-            logger.error(f"Error procesando horas de sesión {sesion.id_sesion}: {e}")
-        
-        return horas
-    
-    def _agregar_sesiones_al_horario(self, materia: Materia, grupo: GrupoMateria, sesiones: List[SesionClase]):
-        """Agrega las sesiones de un grupo al horario"""
-        for sesion in sesiones:
-            horas_sesion = self._generar_horas_sesion(sesion)
-            
-            for dia, hora in horas_sesion:
-                horario_asignado = HorarioAsignado(
-                    materia=materia,
-                    grupo=grupo,
-                    sesion=sesion,
-                    dia=dia,
-                    hora=hora
-                )
-                
-                self.horario_asignado[(dia, hora)] = horario_asignado
     
     def exportar_horario_json(self) -> Dict[str, any]:
         """Exporta el horario actual a formato JSON"""
@@ -389,3 +484,45 @@ class HorarioService:
                 'mensaje': f'Error interno: {str(e)}',
                 'errores': [str(e)]
             }
+
+
+class AgregarGrupoCommand(Command):
+    """Comando para agregar un grupo al horario."""
+    def __init__(self, service: HorarioService, codigo_materia: str, nombre_grupo: str):
+        super().__init__(service)
+        self.codigo_materia = codigo_materia
+        self.nombre_grupo = nombre_grupo
+
+    def execute(self) -> Dict[str, Any]:
+        # Validaciones previas
+        materia = self.service.materia_repo.obtener_por_codigo(self.codigo_materia)
+        if not materia: return {'exito': False, 'mensaje': 'Materia no encontrada.', 'tipo': 'error'}
+        
+        grupo = self.service.grupo_repo.obtener_por_materia_y_nombre(self.codigo_materia, self.nombre_grupo)
+        if not grupo: return {'exito': False, 'mensaje': 'Grupo no encontrado.', 'tipo': 'error'}
+
+        sesiones = self.service.sesion_repo.obtener_por_grupo(grupo.id_grupo_materia)
+        if not sesiones: return {'exito': False, 'mensaje': 'Grupo sin sesiones.', 'tipo': 'warning'}
+
+        conflictos = self.service._verificar_conflictos_horario(sesiones)
+        if conflictos:
+            msg = "Conflicto de horario:\n" + "\n".join([f"• {c['dia']} {c['hora']}: {c['materia_existente']}" for c in conflictos])
+            return {'exito': False, 'mensaje': msg, 'tipo': 'conflict', 'conflictos': conflictos}
+
+        return self.service._internal_agregar_grupo(self.codigo_materia, self.nombre_grupo)
+
+    def undo(self) -> Dict[str, Any]:
+        return self.service._internal_eliminar_grupo(self.codigo_materia, self.nombre_grupo)
+
+class EliminarGrupoCommand(Command):
+    """Comando para eliminar un grupo del horario."""
+    def __init__(self, service: HorarioService, codigo_materia: str, nombre_grupo: str):
+        super().__init__(service)
+        self.codigo_materia = codigo_materia
+        self.nombre_grupo = nombre_grupo
+
+    def execute(self) -> Dict[str, Any]:
+        return self.service._internal_eliminar_grupo(self.codigo_materia, self.nombre_grupo)
+
+    def undo(self) -> Dict[str, Any]:
+        return self.service._internal_agregar_grupo(self.codigo_materia, self.nombre_grupo)

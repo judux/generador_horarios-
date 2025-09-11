@@ -32,6 +32,10 @@ class MainController:
         self._materias_data = {}
         self._colores_materias = {}
         
+        # Pila para la funcionalidad de deshacer
+        self._undo_stack: List[Callable] = []
+        self._redo_stack: List[Callable] = [] # Para futura implementación de rehacer
+        
         # Cargar datos iniciales
         self._cargar_materias()
     
@@ -112,56 +116,65 @@ class MainController:
     
     # Métodos para manipular horarios
     
+    def _execute_command(self, command: Optional[Callable]):
+        """Ejecuta un comando, lo guarda en la pila de deshacer y notifica a la UI."""
+        if command is None:
+            return
+
+        resultado = command.execute()
+
+        if resultado.get('exito'):
+            self._undo_stack.append(command)
+            self._redo_stack.clear() # Una nueva acción limpia la pila de rehacer
+            
+            if self.on_horario_changed: self.on_horario_changed()
+            if self.on_creditos_changed: self.on_creditos_changed()
+            if self.on_success: self.on_success("Acción Realizada", resultado['mensaje'])
+        else:
+            # Manejar diferentes tipos de error/advertencia
+            if resultado.get('tipo') == 'conflict':
+                if self.on_warning: self.on_warning("Conflicto de Horario", resultado['mensaje'])
+            else:
+                if self.on_error: self.on_error("Error", resultado.get('mensaje', 'Acción fallida'))
+
     def agregar_grupo_al_horario(self, codigo_materia: str, nombre_grupo: str) -> bool:
         """Agrega un grupo al horario"""
-        resultado = self.horario_service.agregar_grupo_al_horario(codigo_materia, nombre_grupo)
-        
-        if resultado['exito']:
-            # Notificar cambios a la interfaz
-            if self.on_horario_changed:
-                self.on_horario_changed()
-            
-            if self.on_creditos_changed:
-                self.on_creditos_changed()
-            
-            if self.on_success:
-                self.on_success("Grupo Agregado", resultado['mensaje'])
-            
-            return True
-        else:
-            # Manejar diferentes tipos de error
-            if resultado['tipo'] == 'conflict':
-                if self.on_warning:
-                    self.on_warning("Conflicto de Horario", resultado['mensaje'])
-            else:
-                if self.on_error:
-                    self.on_error("Error", resultado['mensaje'])
-            
-            return False
+        command = self.horario_service.crear_comando_agregar_grupo(codigo_materia, nombre_grupo)
+        self._execute_command(command)
     
     def eliminar_del_horario(self, dia: str, hora: str) -> bool:
         """Elimina una materia del horario"""
-        resultado = self.horario_service.eliminar_del_horario(dia, hora)
+        command = self.horario_service.crear_comando_eliminar_grupo(dia, hora)
+        self._execute_command(command)
+
+    def deshacer_ultima_accion(self):
+        """Deshace la última acción realizada."""
+        if not self._undo_stack:
+            if self.on_warning:
+                self.on_warning("Deshacer", "No hay acciones que deshacer.")
+            return
+
+        command_to_undo = self._undo_stack.pop()
+        resultado = command_to_undo.undo()
         
-        if resultado['exito']:
-            # Notificar cambios a la interfaz
-            if self.on_horario_changed:
-                self.on_horario_changed()
-            
-            if self.on_creditos_changed:
-                self.on_creditos_changed()
-            
-            if self.on_success:
-                self.on_success("Eliminado", resultado['mensaje'])
-            
-            return True
+        # Opcional: Mover a la pila de rehacer
+        # self._redo_stack.append(command_to_undo)
+
+        if resultado.get('exito'):
+            if self.on_horario_changed: self.on_horario_changed()
+            if self.on_creditos_changed: self.on_creditos_changed()
+            if self.on_success: self.on_success("Acción Deshecha", resultado['mensaje'])
         else:
-            if self.on_error:
-                self.on_error("Error", resultado['mensaje'])
-            return False
+            # Si deshacer falla, es un estado inconsistente. Volver a poner el comando.
+            self._undo_stack.append(command_to_undo)
+            if self.on_error: self.on_error("Error al Deshacer", resultado.get('mensaje', 'No se pudo deshacer la acción.'))
     
     def limpiar_horario(self) -> Dict[str, Any]:
         """Limpia completamente el horario"""
+        # Limpiar también la pila de deshacer
+        self._undo_stack.clear()
+        self._redo_stack.clear()
+
         resultado = self.horario_service.limpiar_horario()
         
         if resultado['exito']:

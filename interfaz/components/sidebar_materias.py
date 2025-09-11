@@ -52,20 +52,22 @@ class SidebarMaterias:
     def _crear_header(self):
         """Crea el título o header visual del sidebar."""
         header_frame = ctk.CTkFrame(self.sidebar_frame, fg_color="transparent")
-        header_frame.pack(fill="x", padx=20, pady=(20, 10))
+        header_frame.pack(fill="x", padx=10, pady=(20, 10))
+        header_frame.grid_columnconfigure(0, weight=1)
 
         # Cargar logo de la universidad
         try:
             logo_image = ctk.CTkImage(
                 light_image=Image.open("assets/images/logo_udenar.png"),
-                size=(150, 45) # Ajusta el tamaño según tu logo
+                size=(180, 54) # Increased size
             )
             logo_label = ctk.CTkLabel(header_frame, image=logo_image, text="")
-            logo_label.pack()
+            # Place in grid, aligned to the west (left)
+            logo_label.grid(row=0, column=0, sticky="w") 
         except FileNotFoundError:
             logger.warning("No se encontró el archivo del logo 'assets/images/logo_udenar.png'.")
             logo_label = ctk.CTkLabel(header_frame, text="U. de Nariño", font=("Segoe UI", 18, "bold"))
-            logo_label.pack()
+            logo_label.grid(row=0, column=0, sticky="w")
 
         label_titulo = ctk.CTkLabel(
             header_frame,
@@ -74,7 +76,8 @@ class SidebarMaterias:
             text_color=self.config.COLORS['text_primary'],
             anchor="w"
         )
-        label_titulo.pack(side="left", fill="x", expand=True, pady=(10, 0))
+        # Place in grid below the logo
+        label_titulo.grid(row=1, column=0, sticky="w", pady=(10, 0))
 
     def _crear_barra_busqueda(self):
         """Crea el campo de búsqueda."""

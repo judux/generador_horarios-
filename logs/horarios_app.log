@@ -446,3 +446,176 @@ AttributeError: 'ModernTheme' object has no attribute 'crear_label_titulo'. Did 
 2025-09-10 22:02:04,585 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
 2025-09-10 22:02:50,301 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
 2025-09-10 22:02:50,302 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-11 00:42:01,583 - root - INFO - Logging configurado exitosamente.
+2025-09-11 00:42:01,591 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 00:42:02,038 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 00:42:32,242 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-11 00:42:32,243 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-11 00:55:21,500 - root - INFO - Logging configurado exitosamente.
+2025-09-11 00:55:21,502 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 00:55:21,589 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 00:55:24,066 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-11 00:55:24,067 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-11 00:55:27,942 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-11 00:55:27,943 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-11 00:55:32,143 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-11 00:55:32,143 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-11 01:04:30,251 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:04:30,259 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:04:30,350 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:04:33,388 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-11 01:04:33,388 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-11 01:04:34,186 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
+2025-09-11 01:04:34,187 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
+2025-09-11 01:04:35,642 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
+2025-09-11 01:04:35,643 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
+2025-09-11 01:04:38,836 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-11 01:04:38,837 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-11 01:04:41,449 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9789 - Grupo 1
+2025-09-11 01:04:41,450 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9789, Grupo: Grupo 1
+2025-09-11 01:04:43,412 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-11 01:04:43,413 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-11 01:04:45,066 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-11 01:04:45,067 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-11 01:04:45,667 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
+2025-09-11 01:04:45,668 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
+2025-09-11 01:04:51,653 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:04:51,653 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:07:25,432 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:07:25,441 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:07:25,535 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:07:25,704 - root - CRITICAL - --- OCURRIÓ UN ERROR GRAVE AL INICIAR ---
+2025-09-11 01:07:25,704 - root - CRITICAL - ERROR: customtkinter.windows.widgets.ctk_label.CTkLabel() got multiple values for keyword argument 'text_color'
+Traceback (most recent call last):
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\main.py", line 52, in main
+    app = MainWindow(db_manager)
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\main_window.py", line 33, in __init__
+    self._crear_widgets()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\main_window.py", line 67, in _crear_widgets
+    self.grilla_horario = GrillaHorario(
+                          ~~~~~~~~~~~~~^
+        parent=main_frame,
+        ^^^^^^^^^^^^^^^^^^
+    ...<2 lines>...
+        config=self.config
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\components\grilla_horario.py", line 35, in __init__
+    self._crear_area_grilla()
+    ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\components\grilla_horario.py", line 45, in _crear_area_grilla
+    self._crear_header_horario()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\components\grilla_horario.py", line 52, in _crear_header_horario
+    title_horario = self.theme.crear_label_subtitulo(
+        parent=header_horario,
+        text="Horario Semanal",
+        text_color=self.config.COLORS['secondary']
+    )
+  File "c:\Users\Camilo\Desktop\proyecto_horarios\interfaz\styles\modern_theme.py", line 22, in crear_label_subtitulo
+    label = ctk.CTkLabel(
+    	parent,
+    ...<4 lines>...
+    	**kwargs
+    )
+TypeError: customtkinter.windows.widgets.ctk_label.CTkLabel() got multiple values for keyword argument 'text_color'
+2025-09-11 01:09:33,710 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:09:33,718 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:09:33,809 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:09:36,241 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-11 01:09:36,241 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-11 01:09:37,590 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
+2025-09-11 01:09:37,590 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
+2025-09-11 01:09:45,736 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-11 01:09:45,736 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-11 01:09:48,267 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:09:48,268 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:12:58,151 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:12:58,163 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:12:58,311 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:13:08,546 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-11 01:13:08,546 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-11 01:13:11,490 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-11 01:13:11,490 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-11 01:13:44,366 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:44,367 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:44,931 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:44,931 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:45,393 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:45,393 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:45,811 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:45,811 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:46,163 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:46,163 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:46,343 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:46,343 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:46,561 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:46,562 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:46,742 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:46,742 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:52,202 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:52,202 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:52,397 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:52,397 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:52,546 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:13:52,547 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:13:54,927 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-11 01:13:54,928 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-11 01:13:55,979 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:13:55,979 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:13:58,819 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
+2025-09-11 01:13:58,819 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
+2025-09-11 01:13:59,498 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
+2025-09-11 01:13:59,499 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
+2025-09-11 01:14:00,159 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
+2025-09-11 01:14:00,159 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
+2025-09-11 01:14:04,488 - interfaz.components.sidebar_materias - INFO - Click en grupo: 4553 - Grupo 1
+2025-09-11 01:14:04,488 - interfaz.main_window - INFO - Materia seleccionada para agregar: 4553, Grupo: Grupo 1
+2025-09-11 01:14:07,558 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9786 - Grupo 1
+2025-09-11 01:14:07,558 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9786, Grupo: Grupo 1
+2025-09-11 01:19:28,575 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:19:28,583 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:19:28,689 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:25:58,124 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:25:58,132 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:25:58,220 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 01:26:30,520 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9788 - Grupo 1
+2025-09-11 01:26:30,520 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9788, Grupo: Grupo 1
+2025-09-11 01:26:32,872 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
+2025-09-11 01:26:32,872 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
+2025-09-11 01:26:34,011 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
+2025-09-11 01:26:34,011 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
+2025-09-11 01:26:36,627 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
+2025-09-11 01:26:36,627 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
+2025-09-11 01:26:38,696 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
+2025-09-11 01:26:38,697 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
+2025-09-11 01:26:40,582 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 1
+2025-09-11 01:26:40,582 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 1
+2025-09-11 01:26:41,810 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:41,811 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:42,274 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:42,274 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:42,691 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:42,691 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:43,319 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:43,320 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:43,699 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:43,699 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:48,752 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9785 - Grupo 2
+2025-09-11 01:26:48,752 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9785, Grupo: Grupo 2
+2025-09-11 01:26:50,316 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
+2025-09-11 01:26:50,317 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
+2025-09-11 01:26:53,882 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
+2025-09-11 01:26:53,882 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
+2025-09-11 01:26:56,435 - interfaz.components.sidebar_materias - INFO - Click en grupo: 4553 - Grupo 1
+2025-09-11 01:26:56,435 - interfaz.main_window - INFO - Materia seleccionada para agregar: 4553, Grupo: Grupo 1
+2025-09-11 01:27:01,859 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9786 - Grupo 1
+2025-09-11 01:27:01,860 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9786, Grupo: Grupo 1
+2025-09-11 01:27:03,968 - interfaz.components.sidebar_materias - INFO - Click en grupo: FHILO_ED_SC - Grupo 1
+2025-09-11 01:27:03,968 - interfaz.main_window - INFO - Materia seleccionada para agregar: FHILO_ED_SC, Grupo: Grupo 1
+2025-09-11 01:27:13,712 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
+2025-09-11 01:27:13,713 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
+2025-09-11 01:27:16,534 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
+2025-09-11 01:27:16,534 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1

@@ -36,19 +36,19 @@ class AppConfig:
     
     # Configuración de colores modernos
     COLORS = {
-        'bg_principal': '#F8F9FA',
-        'bg_sidebar': '#FFFFFF',
-        'bg_card': '#FFFFFF',
+        'bg_principal': '#2E2E2E',
+        'bg_sidebar': '#006a3e',
+        'bg_card': '#343434',
         'primary': '#00834D',          # Verde Udenar
         'primary_light': '#D9F9E6',   # Verde claro
         'secondary': '#FBBF24',       # Amarillo Udenar
         'success': '#10B981',
         'warning': '#F59E0B',
         'danger': '#EF4444',
-        'text_primary': '#111827',
-        'text_secondary': '#6B7280',
-        'border': '#E5E7EB',
-        'hover': '#F3F4F6'
+        'text_primary': '#FFFFFF',
+        'text_secondary': '#A0A0A0',
+        'border': '#4A4A4A',
+        'hover': '#404040'
     }
     
     # Configuración del horario

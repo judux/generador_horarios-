@@ -19,12 +19,15 @@ class ModernTheme:
 	def crear_label_subtitulo(self, parent, texto=None, text=None, **kwargs):
 		"""Crea un Label de subtítulo con el tema moderno. Permite 'texto' o 'text' como argumento."""
 		contenido = texto if texto is not None else text
+		if 'text_color' not in kwargs:
+			kwargs['text_color'] = self.primary_color
+		if 'font' not in kwargs:
+			kwargs['font'] = ("Segoe UI", 16, "bold")
+		if 'anchor' not in kwargs:
+			kwargs['anchor'] = "center"
 		label = ctk.CTkLabel(
 			parent, 
-			text=contenido, 
-			text_color=self.primary_color, 
-			font=("Segoe UI", 16, "bold"),
-			anchor="w",
+			text=contenido,
 			**kwargs
 		)
 		return label

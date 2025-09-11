@@ -43,7 +43,7 @@ class MainWindow(ctk.CTk):
         self.configure(fg_color=self.config.COLORS['bg_principal'])
         
         # Configurar el tema global de customtkinter
-        ctk.set_appearance_mode("Light") # O "Dark" o "System"
+        ctk.set_appearance_mode("Dark") # O "Dark" o "System"
         ctk.set_default_color_theme("blue") # O "green", "dark-blue"
 
     def _crear_widgets(self):
@@ -93,9 +93,10 @@ class MainWindow(ctk.CTk):
 
     def show_notification(self, title: str, message: str, notification_type: str):
         """Muestra una notificación tipo toast."""
-        NotificationToast(
-            parent=self,
-            title=title,
-            message=message,
-            notification_type=notification_type
-        )
+                # NotificationToast(
+        #     parent=self,
+        #     title=title,
+        #     message=message,
+        #     notification_type=notification_type
+        # )
+        pass

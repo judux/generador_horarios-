@@ -619,3 +619,6 @@ TypeError: customtkinter.windows.widgets.ctk_label.CTkLabel() got multiple value
 2025-09-11 01:27:13,713 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
 2025-09-11 01:27:16,534 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
 2025-09-11 01:27:16,534 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
+2025-09-11 01:31:17,987 - root - INFO - Logging configurado exitosamente.
+2025-09-11 01:31:17,995 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 01:31:18,088 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos

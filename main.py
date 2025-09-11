@@ -1,83 +1,68 @@
-#!/usr/bin/env python3
 """
-Generador de Horarios - Licenciatura en Informática
-Punto de entrada principal de la aplicación
-
-Este módulo inicializa la aplicación, configura la base de datos y lanza la interfaz gráfica.
+Punto de entrada principal de la aplicación Generador de Horarios.
 """
-
 import sys
-import os
+import traceback
 import logging
-from pathlib import Path
+from logging.handlers import RotatingFileHandler
 
-# Agregar el directorio raíz del proyecto al path de Python
-project_root = Path(__file__).parent
-sys.path.insert(0, str(project_root))
+from config.app_config import AppConfig
+from database.connection import DatabaseManager
+from database.migrations import DatabaseMigrator
+from interfaz.main_window import MainWindow
 
-# Configurar logging básico
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('horarios_app.log'),
-        logging.StreamHandler(sys.stdout)
-    ]
-)
+def setup_logging(config: AppConfig):
+    """Configura el sistema de logging para la aplicación."""
+    log_config = config.LOGGING_CONFIG
+    log_file = config.log_file_path
 
-logger = logging.getLogger(__name__)
+    # Configurar el logger raíz
+    logging.basicConfig(
+        level=log_config['level'],
+        format=log_config['format'],
+        handlers=[
+            logging.StreamHandler(sys.stdout) # Para ver logs en la consola
+        ]
+    )
+
+    # Añadir un handler para rotar archivos de log
+    file_handler = RotatingFileHandler(
+        log_file,
+        maxBytes=log_config['file_max_size'],
+        backupCount=log_config['backup_count']
+    )
+    file_handler.setFormatter(logging.Formatter(log_config['format']))
+    logging.getLogger().addHandler(file_handler)
+
+    logging.info("Logging configurado exitosamente.")
 
 def main():
-    """Función principal que inicializa y ejecuta la aplicación"""
+    """Función principal que inicia la aplicación."""
+    config = AppConfig()
+    setup_logging(config)
+
     try:
-        logger.info("Iniciando aplicación Generador de Horarios...")
-        
-        # Importar módulos necesarios
-        from database.connection import DatabaseManager
-        from database.migrations import DatabaseMigrator
-        from interfaz.main_window import AplicacionHorarioModerna
-        from config.app_config import AppConfig
-        
-        # Inicializar configuración
-        config = AppConfig()
-        
-        # Inicializar y verificar base de datos
-        logger.info("Inicializando base de datos...")
+        # 1. Inicializar la base de datos y ejecutar migraciones
         db_manager = DatabaseManager()
-        
-        if not db_manager.verificar_conexion():
-            logger.error("No se pudo conectar a la base de datos")
-            return 1
-        
-        # Ejecutar migraciones si es necesario
         migrator = DatabaseMigrator(db_manager)
         if not migrator.ejecutar_migraciones():
-            logger.error("Error ejecutando migraciones de base de datos")
-            return 1
-        
-        # Inicializar interfaz gráfica
-        logger.info("Iniciando interfaz gráfica...")
-        import tkinter as tk
-        
-        root = tk.Tk()
-        app = AplicacionHorarioModerna(root, db_manager)
-        
-        logger.info("Aplicación iniciada exitosamente")
-        app.run()
-        
-        return 0
-        
-    except ImportError as e:
-        logger.error(f"Error de importación: {e}")
-        print(f"Error: No se pudo importar un módulo necesario: {e}")
-        return 1
-    except Exception as e:
-        logger.error(f"Error inesperado: {e}")
-        print(f"Error inesperado: {e}")
-        return 1
-    finally:
-        logger.info("Aplicación finalizada")
+            raise RuntimeError("No se pudieron ejecutar las migraciones de la base de datos.")
 
-if __name__ == "__main__":
-    exit_code = main()
-    sys.exit(exit_code)
+        # 2. Iniciar la aplicación
+        app = MainWindow(db_manager)
+        app.mainloop()
+
+    except Exception as e:
+        logging.critical("--- OCURRIÓ UN ERROR GRAVE AL INICIAR ---")
+        logging.critical(f"ERROR: {e}", exc_info=True)
+        traceback.print_exc()
+        input("\nPresiona Enter para salir...")
+        sys.exit(1)
+
+try:
+    if __name__ == "__main__":
+        main()
+except Exception as e:
+    # Este bloque es por si hay un error en el if __name__ == "__main__":
+    logging.critical("Error fatal en el bloque de ejecución principal.", exc_info=True)
+    input("\nPresiona Enter para salir...")

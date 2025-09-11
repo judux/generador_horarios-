@@ -122,7 +122,7 @@ class MainController:
                 self.on_horario_changed()
             
             if self.on_creditos_changed:
-                self.on_creditos_changed(resultado['total_creditos'])
+                self.on_creditos_changed()
             
             if self.on_success:
                 self.on_success("Grupo Agregado", resultado['mensaje'])
@@ -149,7 +149,7 @@ class MainController:
                 self.on_horario_changed()
             
             if self.on_creditos_changed:
-                self.on_creditos_changed(resultado['total_creditos'])
+                self.on_creditos_changed()
             
             if self.on_success:
                 self.on_success("Eliminado", resultado['mensaje'])
@@ -170,7 +170,7 @@ class MainController:
                 self.on_horario_changed()
             
             if self.on_creditos_changed:
-                self.on_creditos_changed(0)
+                self.on_creditos_changed()
         
         return resultado
     
@@ -204,7 +204,7 @@ class MainController:
                 self.on_horario_changed()
             
             if self.on_creditos_changed:
-                self.on_creditos_changed(self.obtener_total_creditos())
+                self.on_creditos_changed()
         
         return resultado
     

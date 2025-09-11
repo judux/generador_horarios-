@@ -159,5 +159,3 @@ class HorarioAsignado:
                 'salon': self.sesion.salon
             }
         }
-        
-print("Test finalizado correctamente.")

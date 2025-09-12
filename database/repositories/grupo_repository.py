@@ -110,3 +110,23 @@ class GrupoRepository:
         except Exception as e:
             logger.error(f"Error obteniendo estadísticas de grupos: {e}")
             return {}
+
+    def obtener_opciones_filtro(self) -> Dict[str, List[str]]:
+        """Obtiene listas únicas de carreras y periodos académicos para los filtros de la UI."""
+        try:
+            with self.db_manager.cursor() as cursor:
+                # Obtener carreras únicas y no nulas
+                cursor.execute("SELECT DISTINCT carrera FROM GruposMateria WHERE carrera IS NOT NULL ORDER BY carrera")
+                carreras = [row[0] for row in cursor.fetchall()]
+                
+                # Obtener periodos únicos y no nulos
+                cursor.execute("SELECT DISTINCT periodo_academico FROM GruposMateria WHERE periodo_academico IS NOT NULL ORDER BY periodo_academico DESC")
+                periodos = [row[0] for row in cursor.fetchall()]
+                
+                return {
+                    "carreras": carreras,
+                    "periodos": periodos
+                }
+        except Exception as e:
+            logger.error(f"Error obteniendo opciones de filtro: {e}")
+            return {"carreras": [], "periodos": []}

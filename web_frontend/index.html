@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios Udenar - Selector</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="http://127.0.0.1:8000/static/images/logo_udenar.png" alt="Logo Udenar" id="logo-udenar">
+        <h1>Consulta de Horarios</h1>
+    </header>
+
+    <main>
+        
+
+        <div id="loading-message"></div>
+        <div id="materias-container"></div>
+    </main>
+
+    <!-- Modal Structure (hidden by default) -->
+    <div id="modal-overlay" class="hidden">
+        <div id="modal-content">
+            <button id="modal-close-btn">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

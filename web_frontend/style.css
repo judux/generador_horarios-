@@ -1,0 +1,163 @@
+/* --- Colores Institucionales Udenar (Aproximados) --- */
+:root {
+    --color-verde-udenar: #006A4E;
+    --color-amarillo-udenar: #FDB913;
+    --color-rojo-udenar: #B71C1C;
+    --color-texto-principal: #333333;
+    --color-fondo: #f4f4f4;
+    --color-blanco: #ffffff;
+    --color-gris-suave: #ccd0d5;
+    --color-gris-hover: #e4e6e9;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#logo-udenar {
+    width: 100px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+h1 {
+    color: var(--color-verde-udenar);
+    margin: 0;
+    font-size: 1.8em;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* --- Filtros --- */
+#filtros-container {
+    background-color: var(--color-blanco);
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+#filtros-container p {
+    margin-top: 0;
+    color: #606770;
+}
+
+.filtro-item {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.filtro-item label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--color-verde-udenar);
+}
+
+.filtro-item select {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: 1px solid var(--color-gris-suave);
+}
+
+#buscar-btn {
+    background-color: var(--color-verde-udenar);
+    color: var(--color-blanco);
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 10px;
+}
+
+#buscar-btn:hover:not(:disabled) {
+    background-color: #005c43;
+}
+
+#buscar-btn:disabled {
+    background-color: #a5d6a7;
+    cursor: not-allowed;
+}
+
+/* --- Resultados --- */
+#results-separator {
+    border: none;
+    border-top: 1px solid var(--color-gris-suave);
+    margin: 30px 0;
+}
+
+#search-container {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+#search-input {
+    width: 50%;
+    max-width: 600px;
+    padding: 12px 15px;
+    font-size: 1em;
+    border-radius: 18px;
+    border: 1px solid var(--color-gris-suave);
+}
+
+#materias-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.materia-card {
+    background-color: var(--color-blanco);
+    border-radius: 8px;
+    border-left: 5px solid var(--color-verde-udenar);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.materia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.materia-card h2 {
+    font-size: 1.2em;
+    margin: 0 0 10px 0;
+    color: var(--color-verde-udenar);
+}
+
+/* --- Utilidades --- */
+.hidden {
+    display: none;
+}
+
+#loading-message, #error-message {
+    text-align: center;
+    font-size: 1.2em;
+    color: #606770;
+    padding: 40px;
+}

@@ -8,6 +8,9 @@ from database.connection import DatabaseManager
 from database.repositories.materia_repository import MateriaRepository
 from logica.services.horario_service import HorarioService
 from logica.utils.color_utils import ColorUtils
+from logica.dto.materia_dto import MateriaDTO
+from logica.dto.grupo_dto import GrupoDTO
+from logica.dto.sesion_dto import SesionDTO
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +58,9 @@ class MainController:
                     if nombre_grupo not in grupos:
                         grupos[nombre_grupo] = {
                             'sesiones': [],
-                            'docente': horario.get('docente', 'N/A')
+                            'docente': horario.get('docente', 'N/A'),
+                            'cupos': horario.get('cupos', 0),
+                            'id_grupo_materia': horario.get('id_grupo_materia')
                         }
                     grupos[nombre_grupo]['sesiones'].append(horario)
                 
@@ -84,6 +89,45 @@ class MainController:
         """Obtiene todas las materias para la interfaz"""
         return self._materias_data.copy()
     
+    def obtener_todas_las_materias_dto(self) -> list[MateriaDTO]:
+        """Obtiene todas las materias como una lista de DTOs para la API."""
+        materias_raw_data = self.obtener_todas_las_materias()
+        materias_dto_list = []
+        for codigo_materia, materia_data in materias_raw_data.items():
+            grupos_dto_list = []
+            for nombre_grupo, grupo_data in materia_data['grupos'].items():
+                sesiones_dto_list = []
+                for sesion_raw in grupo_data['sesiones']:
+                    sesion_dto = SesionDTO(
+                        id=sesion_raw.get('id_sesion'),
+                        dia=sesion_raw.get('dia_semana', ''),
+                        hora_inicio=sesion_raw.get('hora_inicio', ''),
+                        hora_fin=sesion_raw.get('hora_fin', ''),
+                        salon=sesion_raw.get('salon', ''),
+                        docente=sesion_raw.get('docente', ''),
+                        tipo=sesion_raw.get('tipo_sesion', '')
+                    )
+                    sesiones_dto_list.append(sesion_dto)
+                
+                grupo_dto = GrupoDTO(
+                    id=grupo_data.get('id_grupo_materia'),
+                    nombre=nombre_grupo,
+                    cupos=grupo_data.get('cupos', 0),
+                    sesiones=sesiones_dto_list
+                )
+                grupos_dto_list.append(grupo_dto)
+            
+            materia_dto = MateriaDTO(
+                codigo=codigo_materia,
+                nombre=materia_data['nombre'],
+                creditos=materia_data['creditos'],
+                grupos=grupos_dto_list,
+                color=self.obtener_color_materia(codigo_materia)
+            )
+            materias_dto_list.append(materia_dto)
+        
+        return materias_dto_list
+
     def obtener_materias_filtradas(self, termino_busqueda: str) -> Dict[str, Any]:
         """Obtiene materias filtradas por término de búsqueda"""
         if not termino_busqueda:

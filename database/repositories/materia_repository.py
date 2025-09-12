@@ -233,3 +233,18 @@ class MateriaRepository(BaseRepository):
         except Exception as e:
             logger.error(f"Error obteniendo estadísticas de materias: {e}")
             return {'error': str(e)}
+
+    def obtener_por_filtro(self, carrera: str, periodo: str) -> List[Materia]:
+        """Obtiene materias distintas basadas en carrera y periodo académico de sus grupos."""
+        query = """
+            SELECT DISTINCT m.codigo_materia, m.nombre_materia, m.creditos
+            FROM Materias m
+            INNER JOIN GruposMateria gm ON m.codigo_materia = gm.codigo_materia_fk
+            WHERE gm.carrera = ? AND gm.periodo_academico = ?
+            ORDER BY m.nombre_materia
+        """
+        resultados = self._ejecutar_query(query, (carrera, periodo))
+        return [
+            Materia(codigo_materia=row[0], nombre_materia=row[1], creditos=row[2])
+            for row in resultados
+        ]

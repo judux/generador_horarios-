@@ -345,3 +345,21 @@ class MateriaService:
         except Exception as e:
             logger.error(f"Error obteniendo estadísticas de materias: {e}")
             return {'error': str(e)}
+
+    def obtener_materias_por_filtro(self, carrera: str, periodo: str) -> List[Dict[str, Any]]:
+        """Obtiene una lista simple de materias según los filtros de carrera y periodo."""
+        try:
+            materias = self.materia_repo.obtener_por_filtro(carrera, periodo)
+            resultado = [
+                {
+                    'codigo': materia.codigo_materia,
+                    'nombre': materia.nombre_materia,
+                    'creditos': materia.creditos or 0
+                }
+                for materia in materias
+            ]
+            logger.info(f"Encontradas {len(resultado)} materias para {carrera} en {periodo}")
+            return resultado
+        except Exception as e:
+            logger.error(f"Error obteniendo materias por filtro: {e}")
+            return []

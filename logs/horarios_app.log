@@ -619,39 +619,12 @@ TypeError: customtkinter.windows.widgets.ctk_label.CTkLabel() got multiple value
 2025-09-11 01:27:13,713 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
 2025-09-11 01:27:16,534 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9807 - Grupo 1
 2025-09-11 01:27:16,534 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9807, Grupo: Grupo 1
-2025-09-11 01:31:17,987 - root - INFO - Logging configurado exitosamente.
-2025-09-11 01:31:17,995 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
-2025-09-11 01:31:18,088 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
-2025-09-11 13:13:09,761 - root - INFO - Logging configurado exitosamente.
-2025-09-11 13:13:09,768 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
-2025-09-11 13:13:10,232 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
-2025-09-11 13:29:19,240 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
-2025-09-11 13:29:19,240 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
-2025-09-11 13:29:22,599 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
-2025-09-11 13:29:22,599 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
-2025-09-11 13:29:23,171 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
-2025-09-11 13:29:23,172 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
-2025-09-11 13:29:24,887 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 1
-2025-09-11 13:29:24,887 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 1
-2025-09-11 13:29:25,785 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9791 - Grupo 2
-2025-09-11 13:29:25,786 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9791, Grupo: Grupo 2
-2025-09-11 13:29:27,304 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9797 - Grupo 1
-2025-09-11 13:29:27,304 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9797, Grupo: Grupo 1
-2025-09-11 18:43:50,345 - root - INFO - Logging configurado exitosamente.
-2025-09-11 18:43:50,354 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
-2025-09-11 18:43:50,830 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
-2025-09-11 18:43:54,636 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 1
-2025-09-11 18:43:54,637 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 1
-2025-09-11 18:43:55,859 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9790 - Grupo 2
-2025-09-11 18:43:55,859 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9790, Grupo: Grupo 2
-2025-09-11 18:44:00,897 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9808 - Grupo 1
-2025-09-11 18:44:00,897 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9808, Grupo: Grupo 1
-2025-09-11 18:44:02,322 - interfaz.components.sidebar_materias - INFO - Click en grupo: 8320 - Grupo 1
-2025-09-11 18:44:02,322 - interfaz.main_window - INFO - Materia seleccionada para agregar: 8320, Grupo: Grupo 1
-2025-09-11 18:44:04,636 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 1
-2025-09-11 18:44:04,637 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 1
-2025-09-11 18:44:05,821 - interfaz.components.sidebar_materias - INFO - Click en grupo: 9787 - Grupo 2
-2025-09-11 18:44:05,821 - interfaz.main_window - INFO - Materia seleccionada para agregar: 9787, Grupo: Grupo 2
-2025-09-11 18:44:37,903 - root - INFO - Logging configurado exitosamente.
-2025-09-11 18:44:37,911 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
-2025-09-11 18:44:38,021 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 18:51:38,085 - root - INFO - Logging configurado exitosamente.
+2025-09-11 18:51:38,094 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 18:51:38,189 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 19:24:45,422 - root - INFO - Logging configurado exitosamente.
+2025-09-11 19:24:45,430 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 19:24:45,950 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos
+2025-09-11 19:41:52,952 - root - INFO - Logging configurado exitosamente.
+2025-09-11 19:41:52,953 - database.connection - INFO - Conexión exitosa a la base de datos: c:\Users\Camilo\Desktop\proyecto_horarios\database\horarios.db
+2025-09-11 19:41:53,040 - interfaz.controllers.main_controller - INFO - Cargadas 15 materias desde la base de datos

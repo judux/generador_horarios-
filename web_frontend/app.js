@@ -148,6 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Materias List Logic ---
+    const toTitleCase = (str) => {
+        if (!str || str === 'N/A') return str;
+        return str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    };
+
     const displayMaterias = (materias) => {
         materiasContainer.innerHTML = '';
         if (!materias || materias.length === 0) {
@@ -160,8 +165,16 @@ document.addEventListener('DOMContentLoaded', () => {
             card.dataset.codigo = materia.codigo;
             card.innerHTML = `
                 <h2>${materia.nombre}</h2>
-                <p>Código: <span class="codigo">${materia.codigo}</span></p>
-                <p>Créditos: ${materia.creditos}</p>
+                <div class="materia-info">
+                    <div class="info-line">
+                        <span class="info-label">Docente:</span>
+                        <span class="info-value">${toTitleCase(materia.docente)}</span>
+                    </div>
+                    <div class="info-line">
+                        <span class="info-label">Créditos:</span>
+                        <span class="info-value">${materia.creditos}</span>
+                    </div>
+                </div>
             `;
             materiasContainer.appendChild(card);
         });

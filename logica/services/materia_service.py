@@ -34,12 +34,15 @@ class MateriaService:
                     'codigo': materia.codigo_materia,
                     'nombre': materia.nombre_materia,
                     'creditos': materia.creditos or 0,
-                    'grupos': {}
+                    'grupos': {},
+                    'docente': 'N/A'  # Valor por defecto
                 }
                 
                 # Obtener grupos de la materia
                 grupos = self.grupo_repo.obtener_por_materia(materia.codigo_materia)
                 
+                primer_docente_encontrado = False
+
                 for grupo in grupos:
                     # Obtener sesiones del grupo
                     sesiones = self.sesion_repo.obtener_por_grupo(grupo.id_grupo_materia)
@@ -60,6 +63,11 @@ class MateriaService:
                         if not docente and sesion.docente:
                             docente = sesion.docente
                     
+                    # Asignar el primer docente encontrado a la materia
+                    if not primer_docente_encontrado and docente:
+                        materia_dict['docente'] = docente
+                        primer_docente_encontrado = True
+
                     materia_dict['grupos'][grupo.nombre_grupo] = {
                         'sesiones': sesiones_organizadas,
                         'docente': docente or 'N/A',

@@ -19,23 +19,27 @@ body {
 }
 
 header {
-    text-align: center;
-    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
+    justify-content: center; /* Centra el contenido principal (el título) */
     align-items: center;
+    position: relative;      /* Permite posicionar elementos hijos de forma absoluta */
+    padding: 50px 0;         /* Aumentado para dar espacio al logo más grande */
+    margin-bottom: 20px;
 }
 
 #logo-udenar {
-    width: 100px;
+    width: 340px;            /* Se hizo el logo más grande */
     height: auto;
-    margin-bottom: 15px;
+    position: absolute;      /* Se saca del flujo normal para posicionarlo libremente */
+    left: 0;                 /* Se alinea a la izquierda del header */
+    top: 50%;                /* Se centra verticalmente */
+    transform: translateY(-50%);
 }
 
 h1 {
     color: var(--color-verde-udenar);
     margin: 0;
-    font-size: 1.8em;
+    font-size: 2.2em; /* Made title a bit larger too */
 }
 
 main {
@@ -125,18 +129,21 @@ main {
 
 #materias-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 15px;
 }
 
 .materia-card {
     background-color: var(--color-blanco);
     border-radius: 6px;
-    border-left: 4px solid var(--color-verde-udenar);
+    border: 1px solid var(--color-gris-suave); /* Add a subtle border all around */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     padding: 15px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .materia-card:hover {
@@ -147,12 +154,26 @@ main {
 .materia-card h2 {
     font-size: 1em;
     margin: 0 0 8px 0;
-    color: var(--color-verde-udenar);
+    color: var(--color-amarillo-udenar);
 }
 
-.materia-card p {
-    font-size: 0.9em;
-    margin: 4px 0;
+.materia-card .info-line {
+    display: flex;
+    align-items: baseline;
+    font-size: 0.85em;
+    margin: 6px 0;
+}
+
+.materia-card .info-label {
+    color: #6c757d; /* Softer gray for the labels */
+    flex-shrink: 0; /* Prevent the label from shrinking */
+    margin-right: 6px;
+}
+
+.materia-card .info-value {
+    font-weight: 600;
+    color: var(--color-texto-principal);
+    /* No more text truncation */
 }
 
 /* --- Utilidades --- */

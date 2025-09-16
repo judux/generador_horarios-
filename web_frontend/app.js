@@ -1,222 +1,255 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // DOM Elements
-    const materiasContainer = document.getElementById('materias-container');
-    const loadingMessage = document.getElementById('loading-message');
-    const modalOverlay = document.getElementById('modal-overlay');
-    const modalBody = document.getElementById('modal-body');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-    const horarioGrid = document.getElementById('horario-grid');
 
-    const apiUrlBase = 'http://127.0.0.1:8000';
-    const HORAS = Array.from({ length: 16 }, (_, i) => i + 7); // 7am to 10pm (22h)
-    const DIAS = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    // --- CONFIG & STATE ---
+    const API_URL = 'http://127.0.0.1:8000';
+    const DIAS = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+    const HORA_INICIO = 7;
+    const HORA_FIN = 22;
+    const PALETA_PASTEL = ['#D1E7DD', '#FEF3D1', '#D1E9FE', '#F8D7DA', '#E9D5FF'];
 
     let materiasCargadas = [];
-    let coloresMaterias = {};
+    let materiasMostradas = [];
+    let materiasAgregadas = new Map();
+    let horario = {};
+    let colorIndex = 0;
 
-    // --- Modal Logic ---
-    const hideModal = () => modalOverlay.classList.add('hidden');
-    const showModal = () => modalOverlay.classList.remove('hidden');
+    // --- DOM ELEMENTS ---
+    const materiasContainer = document.getElementById('materias-container');
+    const searchInput = document.getElementById('search-input');
+    const horarioGrid = document.getElementById('horario-grid');
+    const clearScheduleBtn = document.getElementById('clear-schedule-btn');
 
-    const displayMateriaDetails = (materia) => {
-        modalBody.innerHTML = '';
-        const title = document.createElement('h2');
-        title.textContent = materia.nombre;
-        modalBody.appendChild(title);
-
-        if (!materia.grupos || materia.grupos.length === 0) {
-            modalBody.innerHTML += '<p>No hay grupos disponibles para esta materia.</p>';
-            return;
+    // --- API CALLS ---
+    const fetchApi = async (url) => {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error("API Fetch Error: ", error);
+            materiasContainer.innerHTML = '<p class="info-message">Error al conectar con el servidor.</p>';
+            return null;
         }
-
-        materia.grupos.forEach(grupo => {
-            const grupoDiv = document.createElement('div');
-            grupoDiv.className = 'grupo-info';
-            let grupoHTML = `<h3>Grupo ${grupo.nombre}</h3>`;
-            if (grupo.docente) grupoHTML += `<p><strong>Docente:</strong> ${grupo.docente}</p>`;
-            if (grupo.cupos) grupoHTML += `<p><strong>Cupos:</strong> ${grupo.cupos}</p>`;
-            
-            if (grupo.sesiones && grupo.sesiones.length > 0) {
-                grupo.sesiones.forEach(sesion => {
-                    grupoHTML += `
-                        <div class="sesion-info">
-                            <p><strong>Día:</strong> ${sesion.dia}</p>
-                            <p><strong>Hora:</strong> ${sesion.hora_inicio} - ${sesion.hora_fin}</p>
-                            <p><strong>Salón:</strong> ${sesion.salon}</p>
-                        </div>
-                    `;
-                });
-            } else {
-                grupoHTML += '<p>No hay sesiones programadas para este grupo.</p>';
-            }
-            grupoDiv.innerHTML = grupoHTML;
-            modalBody.appendChild(grupoDiv);
-        });
     };
 
-    const fetchMateriaDetails = (codigoMateria) => {
-        const url = `${apiUrlBase}/materias/${codigoMateria}`;
-        modalBody.innerHTML = '<p>Cargando detalles...</p>';
-        showModal();
-        fetch(url)
-            .then(response => response.ok ? response.json() : Promise.reject(response.status))
-            .then(displayMateriaDetails)
-            .catch(error => {
-                console.error("Error al cargar detalles de la materia:", error);
-                modalBody.innerHTML = '<p class="error-message">No se pudieron cargar los detalles.</p>';
-            });
-    };
+    // --- UI RENDERING ---
+    const toTitleCase = (str) => str && str !== 'N/A' ? str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase()) : 'No asignado';
 
-    // --- Horario Grid Logic ---
-    const generarHorarioGrid = () => {
-        horarioGrid.innerHTML = '';
-
-        const formatHour12 = (hour) => {
-            const ampm = hour >= 12 ? 'PM' : 'AM';
-            const h = hour % 12 || 12; // Convert 0 to 12
-            return `${h}:00 ${ampm}`;
-        };
-
-        // Empty cell for top-left corner
-        horarioGrid.appendChild(document.createElement('div'));
-        // Day headers
-        DIAS.forEach(dia => {
-            const header = document.createElement('div');
-            header.className = 'grid-header';
-            header.textContent = dia;
-            horarioGrid.appendChild(header);
-        });
-        // Time slots and cells
-        HORAS.forEach(hora => {
-            const timeCell = document.createElement('div');
-            timeCell.className = 'grid-time';
-            timeCell.textContent = formatHour12(hora);
-            horarioGrid.appendChild(timeCell);
-            DIAS.forEach(dia => {
-                const cell = document.createElement('div');
-                cell.className = 'grid-cell';
-                cell.dataset.dia = dia;
-                cell.dataset.hora = hora;
-                horarioGrid.appendChild(cell);
-            });
-        });
-    };
-
-    const getColorParaMateria = (codigoMateria) => {
-        if (coloresMaterias[codigoMateria]) {
-            return coloresMaterias[codigoMateria];
-        }
-        // Simple hash function to get a color
-        let hash = 0;
-        for (let i = 0; i < codigoMateria.length; i++) {
-            hash = codigoMateria.charCodeAt(i) + ((hash << 5) - hash);
-        }
-        const h = hash % 360;
-        const color = `hsl(${h}, 70%, 80%)`; // Lighter colors
-        coloresMaterias[codigoMateria] = color;
-        return color;
-    };
-
-    const agregarMateriaAlHorario = (materia) => {
-        if (!materia.grupos || materia.grupos.length === 0) {
-            alert(`La materia ${materia.nombre} no tiene grupos para agregar.`);
-            return;
-        }
-
-        const grupo = materia.grupos[0]; // Add the first group by default
-        const color = getColorParaMateria(materia.codigo);
-
-        grupo.sesiones.forEach(sesion => {
-            const diaIndex = DIAS.indexOf(sesion.dia);
-            if (diaIndex === -1) return;
-
-            const [horaInicio] = sesion.hora_inicio.split(':').map(Number);
-            const [horaFin] = sesion.hora_fin.split(':').map(Number);
-            const duracion = Math.max(1, horaFin - horaInicio);
-
-            const cell = horarioGrid.querySelector(`[data-dia='${sesion.dia}'][data-hora='${horaInicio}']`);
-            if (!cell) return;
-
-            const materiaDiv = document.createElement('div');
-            materiaDiv.className = 'horario-materia';
-            materiaDiv.style.backgroundColor = color;
-            materiaDiv.style.height = `${duracion * 40 - 4}px`; // -4 for padding/gap
-            materiaDiv.innerHTML = `<strong>${materia.nombre}</strong> (G${grupo.nombre})`;
-
-            cell.appendChild(materiaDiv);
-        });
-    };
-
-    // --- Materias List Logic ---
-    const toTitleCase = (str) => {
-        if (!str || str === 'N/A') return str;
-        return str.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
-    };
-
-    const displayMaterias = (materias) => {
+    const renderMaterias = () => {
         materiasContainer.innerHTML = '';
-        if (!materias || materias.length === 0) {
-            materiasContainer.innerHTML = '<p id="error-message">No se encontraron materias.</p>';
+        if (materiasCargadas.length === 0) {
+            materiasContainer.innerHTML = '<div class="spinner-container"><div class="spinner"></div></div>';
             return;
         }
-        materias.forEach(materia => {
+        if (materiasMostradas.length === 0) {
+            materiasContainer.innerHTML = '<p class="info-message">No se encontraron materias.</p>';
+            return;
+        }
+
+        materiasMostradas.forEach(materia => {
+            const isAdded = materiasAgregadas.has(materia.codigo);
             const card = document.createElement('div');
-            card.className = 'materia-card';
+            card.className = `materia-card ${isAdded ? 'added' : ''}`;
             card.dataset.codigo = materia.codigo;
             card.innerHTML = `
-                <h2>${materia.nombre}</h2>
-                <div class="materia-info">
-                    <div class="info-line">
-                        <span class="info-label">Docente:</span>
-                        <span class="info-value">${toTitleCase(materia.docente)}</span>
-                    </div>
-                    <div class="info-line">
-                        <span class="info-label">Créditos:</span>
-                        <span class="info-value">${materia.creditos}</span>
-                    </div>
+                <h3>${toTitleCase(materia.nombre)}</h3>
+                <div class="materia-details">
+                    <span><i class="bi bi-person-fill"></i> ${toTitleCase(materia.docente)}</span>
+                    <span><i class="bi bi-book-fill"></i> ${materia.creditos} créditos</span>
                 </div>
+                <button class="add-btn" ${isAdded ? 'disabled' : ''}>
+                    <span class="add-text"><i class="bi bi-plus-lg"></i> Agregar</span>
+                    <span class="added-text"><i class="bi bi-check-lg"></i> Agregado</span>
+                </button>
             `;
             materiasContainer.appendChild(card);
         });
     };
 
-    const fetchAndDisplayAllMaterias = () => {
-        loadingMessage.textContent = 'Cargando materias...';
-        loadingMessage.classList.remove('hidden');
-        materiasContainer.innerHTML = '';
-        fetch(`${apiUrlBase}/materias`)
-            .then(response => response.json())
-            .then(data => {
-                loadingMessage.classList.add('hidden');
-                materiasCargadas = data;
-                displayMaterias(materiasCargadas);
-            })
-            .catch(error => {
-                console.error("Error al cargar materias:", error);
-                loadingMessage.innerHTML = '<p id="error-message">Error al conectar con la API.</p>';
-            });
-    };
+    const renderHorarioGrid = () => {
+        horarioGrid.innerHTML = ''; // Clear the grid completely
 
-    // --- Event Listeners ---
-    materiasContainer.addEventListener('click', (event) => {
-        const card = event.target.closest('.materia-card');
-        if (card && card.dataset.codigo) {
-            const materia = materiasCargadas.find(m => m.codigo === card.dataset.codigo);
-            if (materia) {
-                fetch(`${apiUrlBase}/materias/${materia.codigo}`)
-                    .then(res => res.json())
-                    .then(agregarMateriaAlHorario)
-                    .catch(err => console.error("Could not fetch details to add to schedule", err));
+        // 1. Create and place day headers
+        DIAS.forEach((dia, index) => {
+            const headerCell = document.createElement('div');
+            headerCell.className = 'grid-header';
+            headerCell.textContent = dia;
+            headerCell.style.gridRow = '1';
+            headerCell.style.gridColumn = `${index + 2}`;
+            horarioGrid.appendChild(headerCell);
+        });
+
+        // 2. Create and place time labels
+        for (let hora = HORA_INICIO; hora < HORA_FIN; hora++) {
+            const timeCell = document.createElement('div');
+            timeCell.className = 'grid-time';
+            timeCell.textContent = `${hora}:00`;
+            const rowStart = (hora - HORA_INICIO) * 2 + 2;
+            timeCell.style.gridRow = `${rowStart} / ${rowStart + 2}`;
+            timeCell.style.gridColumn = '1';
+            horarioGrid.appendChild(timeCell);
+        }
+
+        // 3. Create background cells for alignment and borders
+        for (let row = 2; row <= (HORA_FIN - HORA_INICIO) * 2 + 1; row++) {
+            for (let col = 2; col <= DIAS.length + 1; col++) {
+                const bgCell = document.createElement('div');
+                bgCell.className = 'grid-background-cell';
+                bgCell.style.gridRow = `${row}`;
+                bgCell.style.gridColumn = `${col}`;
+                // Add a solid line for full hours
+                if ((row - 2) % 2 === 0) {
+                    bgCell.style.borderBottom = '1px solid var(--color-gris-suave)';
+                } else {
+                    bgCell.style.borderBottom = '1px dotted var(--color-gris-suave)';
+                }
+                horarioGrid.appendChild(bgCell);
             }
         }
-    });
+    };
 
-    // modalCloseBtn.addEventListener('click', hideModal);
-    // modalOverlay.addEventListener('click', (event) => {
-    //     if (event.target === modalOverlay) hideModal();
-    // });
+    // --- CORE LOGIC ---
+    const getMateriaColor = (codigo) => {
+        if (!materiasAgregadas.has(codigo) || !materiasAgregadas.get(codigo).color) {
+            const color = PALETA_PASTEL[colorIndex % PALETA_PASTEL.length];
+            colorIndex++;
+            return color;
+        }
+        return materiasAgregadas.get(codigo).color;
+    };
 
-    // --- Initial Load ---
-    generarHorarioGrid();
-    fetchAndDisplayAllMaterias();
+    const addMateriaToSchedule = (materia, grupo) => {
+        for (const sesion of grupo.sesiones) {
+            const [startHour, startMinute] = sesion.hora_inicio.split(':').map(Number);
+            const [endHour, endMinute] = sesion.hora_fin.split(':').map(Number);
+            let current = startHour * 60 + startMinute;
+            const end = endHour * 60 + endMinute;
+
+            while(current < end) {
+                const h = Math.floor(current / 60);
+                const m = current % 60;
+                if (horario[`${sesion.dia}-${h}-${m}`]) {
+                    alert(`Conflicto de horario: El espacio de ${sesion.dia} a las ${h}:${m === 0 ? '00' : m} ya está ocupado.`);
+                    return false;
+                }
+                current += 30;
+            }
+        }
+
+        const color = getMateriaColor(materia.codigo);
+        materia.color = color;
+        materiasAgregadas.set(materia.codigo, materia);
+
+        grupo.sesiones.forEach(sesion => {
+            const diaIndex = DIAS.indexOf(sesion.dia);
+            if (diaIndex === -1) return;
+
+            const [startHour, startMinute] = sesion.hora_inicio.split(':').map(Number);
+            const [endHour, endMinute] = sesion.hora_fin.split(':').map(Number);
+
+            const rowStart = (startHour - HORA_INICIO) * 2 + (startMinute / 30) + 2;
+            const rowEnd = (endHour - HORA_INICIO) * 2 + (endMinute / 30) + 2;
+            const colStart = diaIndex + 2;
+
+            const block = document.createElement('div');
+            block.className = 'class-block';
+            block.dataset.codigo = materia.codigo;
+            block.style.backgroundColor = color;
+            block.style.gridColumn = `${colStart}`;
+            block.style.gridRow = `${rowStart} / ${rowEnd}`;
+            block.innerHTML = `
+                <strong>${toTitleCase(materia.nombre)}</strong>
+                <div class="class-details">${toTitleCase(grupo.docente)}</div>
+                <div class="class-details">Gpo: ${grupo.nombre}</div>
+                <button class="remove-class-btn" data-codigo="${materia.codigo}"><i class="bi bi-x"></i></button>
+            `;
+            horarioGrid.appendChild(block);
+
+            let current = startHour * 60 + startMinute;
+            const end = endHour * 60 + endMinute;
+             while(current < end) {
+                const h = Math.floor(current / 60);
+                const m = current % 60;
+                horario[`${sesion.dia}-${h}-${m}`] = materia.codigo;
+                current += 30;
+            }
+        });
+        return true;
+    };
+
+    const removeMateriaFromSchedule = (codigo) => {
+        document.querySelectorAll(`.class-block[data-codigo="${codigo}"]`).forEach(el => el.remove());
+        materiasAgregadas.delete(codigo);
+        for (const key in horario) {
+            if (horario[key] === codigo) delete horario[key];
+        }
+        renderMaterias();
+    };
+
+    // --- EVENT HANDLERS ---
+    const handleAddClick = async (e) => {
+        const addBtn = e.target.closest('.add-btn');
+        if (!addBtn) return;
+        
+        const card = addBtn.closest('.materia-card');
+        const codigo = card.dataset.codigo;
+        if (materiasAgregadas.has(codigo)) return;
+
+        const materiaDetails = await fetchApi(`${API_URL}/materias/${codigo}`);
+        if (!materiaDetails || !materiaDetails.grupos || materiaDetails.grupos.length === 0) {
+            alert('Esta materia no tiene grupos disponibles.');
+            return;
+        }
+
+        if (addMateriaToSchedule(materiaDetails, materiaDetails.grupos[0])) {
+            card.classList.add('added');
+            addBtn.disabled = true;
+        }
+    };
+
+    const handleRemoveClick = (e) => {
+        const removeBtn = e.target.closest('.remove-class-btn');
+        if (removeBtn) {
+            removeMateriaFromSchedule(removeBtn.dataset.codigo);
+        }
+    };
+
+    const handleSearch = (e) => {
+        const term = e.target.value.toLowerCase();
+        materiasMostradas = materiasCargadas.filter(m =>
+            m.nombre.toLowerCase().includes(term) ||
+            (m.docente && m.docente.toLowerCase().includes(term))
+        );
+        renderMaterias();
+    };
+
+    const handleClear = () => {
+        document.querySelectorAll('.class-block').forEach(el => el.remove());
+        horario = {};
+        materiasAgregadas.clear();
+        colorIndex = 0;
+        renderMaterias();
+    };
+
+    // --- INITIALIZATION ---
+    const init = async () => {
+        renderHorarioGrid();
+        renderMaterias();
+        const fetchedMaterias = await fetchApi(`${API_URL}/materias`);
+        if (fetchedMaterias) {
+            materiasCargadas = fetchedMaterias;
+            materiasMostradas = [...materiasCargadas];
+            renderMaterias();
+        }
+
+        materiasContainer.addEventListener('click', handleAddClick);
+        horarioGrid.addEventListener('click', handleRemoveClick);
+        searchInput.addEventListener('keyup', handleSearch);
+        clearScheduleBtn.addEventListener('click', handleClear);
+        
+        document.getElementById('export-pdf-btn').addEventListener('click', () => alert('Función de exportar a PDF no implementada.'));
+        document.getElementById('export-ics-btn').addEventListener('click', () => alert('Función de exportar a .ics no implementada.'));
+    };
+
+    init();
 });

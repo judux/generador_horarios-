@@ -31,13 +31,30 @@
                     <i class="bi bi-search"></i>
                     <input type="text" id="search-input" placeholder="Buscar por materia o docente...">
                 </div>
-                <!-- Filtros (opcional) -->
-                <!-- 
                 <div class="filters">
-                    <button class="filter-btn">Semestre</button>
-                    <button class="filter-btn">Departamento</button>
-                </div> 
-                -->
+                    <select id="period-filter" class="filter-select">
+                        <option value="all">Periodo</option>
+                        <option value="A">Período A </option>
+                        <option value="B">Período B </option>
+                    </select>
+                    <select id="semester-filter" class="filter-select">
+                        <option value="all">Semestres</option>
+                        <option value="1">Semestre 1</option>
+                        <option value="2">Semestre 2</option>
+                        <option value="3">Semestre 3</option>
+                        <option value="4">Semestre 4</option>
+                        <option value="5">Semestre 5</option>
+                        <option value="6">Semestre 6</option>
+                        <option value="7">Semestre 7</option>
+                        <option value="8">Semestre 8</option>
+                        <option value="9">Semestre 9</option>
+                        <option value="10">Semestre 10</option>
+                    </select>
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="elective-filter">
+                        <label for="elective-filter">Sólo Electivas</label>
+                    </div>
+                </div>
             </div>
             <div id="materias-container" class="materias-list">
                 <!-- Las tarjetas de materias se insertarán aquí -->

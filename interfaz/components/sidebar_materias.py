@@ -26,7 +26,12 @@ class SidebarMaterias:
 
         self.busqueda_var = ctk.StringVar()
         self.busqueda_var.trace_add("write", lambda *args: self._filtrar_y_mostrar_materias())
-        
+        self.semestre_var = ctk.StringVar(value="Semestre (Todos)")
+        self.electivas_var = ctk.BooleanVar(value=False)
+
+        self.semestre_var.trace_add("write", lambda *args: self._filtrar_y_mostrar_materias())
+        self.electivas_var.trace_add("write", lambda *args: self._filtrar_y_mostrar_materias())
+
         self.widgets_grupos_expandidos: Dict[str, ctk.CTkFrame] = {}
         
         # Crear la UI del sidebar
@@ -45,6 +50,7 @@ class SidebarMaterias:
 
         self._crear_header()
         self._crear_barra_busqueda()
+        self._crear_filtros()
         self._crear_area_scroll()
 
         self._filtrar_y_mostrar_materias() # Carga inicial
@@ -91,6 +97,34 @@ class SidebarMaterias:
         )
         search_entry.pack(fill="x", padx=20, pady=(5, 10))
 
+    def _crear_filtros(self):
+        """Crea los widgets para filtrar por semestre y electivas."""
+        filter_frame = ctk.CTkFrame(self.sidebar_frame, fg_color="transparent")
+        filter_frame.pack(fill="x", padx=20, pady=(0, 10))
+        filter_frame.grid_columnconfigure(0, weight=1)
+        filter_frame.grid_columnconfigure(1, weight=1)
+
+        # Filtro por semestre
+        semestres = ["Semestre (Todos)"] + [str(i) for i in range(1, 11)]
+        semestre_menu = ctk.CTkComboBox(
+            filter_frame,
+            values=semestres,
+            variable=self.semestre_var,
+            height=35,
+            border_width=1,
+            corner_radius=8
+        )
+        semestre_menu.grid(row=0, column=0, sticky="ew", padx=(0, 5))
+
+        # Filtro de electivas
+        electivas_check = ctk.CTkCheckBox(
+            filter_frame,
+            text="Solo Electivas",
+            variable=self.electivas_var,
+            font=("Segoe UI", 12),
+        )
+        electivas_check.grid(row=0, column=1, sticky="w", padx=5)
+
     def _crear_area_scroll(self):
         """Crea un área scrolleable para la lista de materias."""
         self.scrollable_frame = ctk.CTkScrollableFrame(
@@ -100,10 +134,24 @@ class SidebarMaterias:
         self.scrollable_frame.pack(fill="both", expand=True, padx=10, pady=10)
 
     def _filtrar_y_mostrar_materias(self):
-        """Filtra las materias según el término de búsqueda y las muestra."""
+        """Filtra las materias según los controles de UI y las muestra."""
         termino_busqueda = self.busqueda_var.get()
+        
+        semestre_seleccionado = self.semestre_var.get()
+        semestre_a_filtrar = None
+        if semestre_seleccionado.isdigit():
+            semestre_a_filtrar = int(semestre_seleccionado)
+
+        es_electiva = self.electivas_var.get() or None # Si es False, no se filtra
+        if not self.electivas_var.get():
+            es_electiva = None
+
         try:
-            materias = self.controller.obtener_materias_filtradas(termino_busqueda)
+            materias = self.controller.obtener_materias_filtradas(
+                termino_busqueda,
+                semestre=semestre_a_filtrar,
+                es_electiva=es_electiva
+            )
             self._poblar_lista_materias(materias)
         except Exception as e:
             logger.error(f"Error al cargar/filtrar materias: {e}")

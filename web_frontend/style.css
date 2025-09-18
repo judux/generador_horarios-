@@ -423,3 +423,78 @@ body {
         margin-right: 0.5rem;
     }
 }
+
+.filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.filter-select {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-gris-suave);
+    font-size: 0.9rem;
+    background-color: var(--color-blanco);
+    color: var(--color-gris-texto);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23333333' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--color-amarillo-udenar);
+    box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.25);
+}
+
+.filter-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.filter-checkbox input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid var(--color-gris-suave);
+    border-radius: 4px;
+    background-color: var(--color-blanco);
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.filter-checkbox input[type="checkbox"]:checked {
+    background-color: var(--color-verde-udenar);
+    border-color: var(--color-verde-udenar);
+}
+
+.filter-checkbox input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    width: 4px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.filter-checkbox label {
+    font-size: 0.9rem;
+    color: var(--color-gris-texto);
+    cursor: pointer;
+}

@@ -68,6 +68,9 @@ class MainController:
                 self._materias_data[materia.codigo_materia] = {
                     'nombre': materia.nombre_materia,
                     'creditos': materia.creditos or 0,
+                    'semestre': materia.semestre,
+                    'es_electiva': materia.es_electiva,
+                    'periodo': materia.periodo,
                     'grupos': grupos
                 }
                 
@@ -128,20 +131,42 @@ class MainController:
         
         return materias_dto_list
 
-    def obtener_materias_filtradas(self, termino_busqueda: str) -> Dict[str, Any]:
-        """Obtiene materias filtradas por término de búsqueda"""
-        if not termino_busqueda:
-            return self._materias_data.copy()
+    def obtener_materias_filtradas(self, termino_busqueda: str, semestre: Optional[int] = None, es_electiva: Optional[bool] = None, periodo: Optional[str] = None) -> Dict[str, Any]:
+        """Obtiene materias filtradas por término de búsqueda, semestre, si es electiva y período."""
+        materias_a_filtrar = self._materias_data.copy()
         
-        termino_lower = termino_busqueda.lower()
-        materias_filtradas = {}
-        
-        for codigo, data in self._materias_data.items():
-            if (termino_lower in data['nombre'].lower() or 
-                termino_lower in codigo.lower()):
-                materias_filtradas[codigo] = data
-        
-        return materias_filtradas
+        # 1. Filtrar por término de búsqueda
+        if termino_busqueda:
+            termino_lower = termino_busqueda.lower()
+            materias_a_filtrar = {
+                codigo: data for codigo, data in materias_a_filtrar.items()
+                if (termino_lower in data['nombre'].lower() or 
+                    termino_lower in codigo.lower())
+            }
+
+        # 2. Filtrar por semestre
+        if semestre is not None:
+            # Las electivas no tienen semestre, asi que las incluimos si no se filtra por electiva
+            materias_a_filtrar = {
+                codigo: data for codigo, data in materias_a_filtrar.items()
+                if data.get('semestre') == semestre or (data.get('es_electiva') and es_electiva is None)
+            }
+
+        # 3. Filtrar por electiva
+        if es_electiva is not None:
+            materias_a_filtrar = {
+                codigo: data for codigo, data in materias_a_filtrar.items()
+                if data.get('es_electiva') == es_electiva
+            }
+
+        # 4. Filtrar por período
+        if periodo is not None:
+            materias_a_filtrar = {
+                codigo: data for codigo, data in materias_a_filtrar.items()
+                if data.get('periodo') == periodo
+            }
+            
+        return materias_a_filtrar
     
     def obtener_color_materia(self, codigo_materia: str) -> str:
         """Obtiene el color asignado a una materia"""

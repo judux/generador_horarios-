@@ -12,6 +12,9 @@ class Materia:
     codigo_materia: str
     nombre_materia: str
     creditos: Optional[int] = None
+    semestre: Optional[int] = None
+    es_electiva: bool = False
+    periodo: Optional[str] = None
     
     def __post_init__(self):
         """Validaciones automáticas después de la inicialización"""
@@ -21,6 +24,8 @@ class Materia:
             raise ValueError("El nombre de materia no puede estar vacío")
         if self.creditos is not None and self.creditos < 0:
             raise ValueError("Los créditos no pueden ser negativos")
+        if self.semestre is not None and self.semestre < 0:
+            raise ValueError("El semestre no puede ser negativo")
 
 @dataclass
 class GrupoMateria:

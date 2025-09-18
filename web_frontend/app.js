@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- DOM ELEMENTS ---
     const materiasContainer = document.getElementById('materias-container');
     const searchInput = document.getElementById('search-input');
+    const periodFilter = document.getElementById('period-filter');
+    const semesterFilter = document.getElementById('semester-filter');
+    const electiveFilter = document.getElementById('elective-filter');
     const horarioGrid = document.getElementById('horario-grid');
     const clearScheduleBtn = document.getElementById('clear-schedule-btn');
 
@@ -214,12 +217,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const handleSearch = (e) => {
-        const term = e.target.value.toLowerCase();
-        materiasMostradas = materiasCargadas.filter(m =>
-            m.nombre.toLowerCase().includes(term) ||
-            (m.docente && m.docente.toLowerCase().includes(term))
-        );
+    const applyFilters = () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        const period = periodFilter.value;
+        const semester = semesterFilter.value;
+        const onlyElectives = electiveFilter.checked;
+
+        materiasMostradas = materiasCargadas.filter(m => {
+            // Filtro por término de búsqueda
+            const searchMatch = searchTerm === '' || 
+                                m.nombre.toLowerCase().includes(searchTerm) || 
+                                (m.docente && m.docente.toLowerCase().includes(searchTerm));
+
+            // Filtro por semestre
+            const semesterMatch = semester === 'all' || m.semestre == semester;
+
+            // Filtro por período
+            const periodMatch = period === 'all' || m.periodo == period;
+            const electiveMatch = !onlyElectives || m.es_electiva;
+
+            return searchMatch && semesterMatch && periodMatch && electiveMatch;
+        });
+
         renderMaterias();
     };
 
@@ -244,8 +263,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         materiasContainer.addEventListener('click', handleAddClick);
         horarioGrid.addEventListener('click', handleRemoveClick);
-        searchInput.addEventListener('keyup', handleSearch);
         clearScheduleBtn.addEventListener('click', handleClear);
+
+        // Event listeners para los filtros
+        searchInput.addEventListener('keyup', applyFilters);
+        periodFilter.addEventListener('change', applyFilters);
+        semesterFilter.addEventListener('change', applyFilters);
+        electiveFilter.addEventListener('change', applyFilters);
         
         document.getElementById('export-pdf-btn').addEventListener('click', () => alert('Función de exportar a PDF no implementada.'));
         document.getElementById('export-ics-btn').addEventListener('click', () => alert('Función de exportar a .ics no implementada.'));

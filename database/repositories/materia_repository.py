@@ -12,26 +12,57 @@ logger = logging.getLogger(__name__)
 class MateriaRepository(BaseRepository):
     """Repositorio para gestionar materias en la base de datos"""
     
-    def obtener_todas(self) -> List[Materia]:
-        """Obtiene todas las materias"""
-        query = "SELECT codigo_materia, nombre_materia, creditos FROM Materias ORDER BY nombre_materia"
-        resultados = self._ejecutar_query(query)
+    def obtener_todas(self, semestre: Optional[int] = None, es_electiva: Optional[bool] = None) -> List[Materia]:
+        """Obtiene todas las materias, con opción de filtrar por semestre y si es electiva."""
+        
+        query = "SELECT codigo_materia, nombre_materia, creditos, semestre, es_electiva, periodo FROM Materias"
+        params = []
+        conditions = []
+
+        if semestre is not None:
+            conditions.append("semestre = ?")
+            params.append(semestre)
+        
+        if es_electiva is not None:
+            conditions.append("es_electiva = ?")
+            params.append(es_electiva)
+
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+
+        query += " ORDER BY nombre_materia"
+        
+        resultados = self._ejecutar_query(query, tuple(params))
         
         return [
-            Materia(codigo_materia=row[0], nombre_materia=row[1], creditos=row[2])
+            Materia(
+                codigo_materia=row[0], 
+                nombre_materia=row[1], 
+                creditos=row[2],
+                semestre=row[3],
+                es_electiva=bool(row[4]),
+                periodo=row[5]
+            )
             for row in resultados
         ]
     
     def obtener_por_codigo(self, codigo: str) -> Optional[Materia]:
         """Obtiene una materia por su código"""
-        query = "SELECT codigo_materia, nombre_materia, creditos FROM Materias WHERE codigo_materia = ?"
+        query = "SELECT codigo_materia, nombre_materia, creditos, semestre, es_electiva, periodo FROM Materias WHERE codigo_materia = ?"
         resultados = self._ejecutar_query(query, (codigo,))
         
         if not resultados:
             return None
         
         row = resultados[0]
-        return Materia(codigo_materia=row[0], nombre_materia=row[1], creditos=row[2])
+        return Materia(
+            codigo_materia=row[0], 
+            nombre_materia=row[1], 
+            creditos=row[2],
+            semestre=row[3],
+            es_electiva=bool(row[4]),
+            periodo=row[5]
+        )
     
     def crear(self, materia: Materia) -> bool:
         """Crea una nueva materia"""

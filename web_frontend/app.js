@@ -252,6 +252,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- INITIALIZATION ---
     const init = async () => {
+        // --- Theme Switch Logic ---
+        const themeCheckbox = document.getElementById('theme-checkbox');
+
+        const applyTheme = (theme) => {
+            document.body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            themeCheckbox.checked = theme === 'dark';
+        };
+
+        themeCheckbox.addEventListener('change', (e) => {
+            applyTheme(e.target.checked ? 'dark' : 'light');
+        });
+
+        // Apply saved theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+        // --- App Initialization ---
         renderHorarioGrid();
         renderMaterias();
         const fetchedMaterias = await fetchApi(`${API_URL}/materias`);

@@ -23,7 +23,14 @@
         <div class="theme-switch-wrapper">
             <label class="theme-switch" for="theme-checkbox">
                 <input type="checkbox" id="theme-checkbox" />
-                <div class="slider round"></div>
+                <div class="slider round">
+                    <div class="sun-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </div>
+                    <div class="moon-icon">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                    </div>
+                </div>
             </label>
         </div>
     </header>
@@ -33,9 +40,50 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>Materias Disponibles</h2>
-                <div class="search-bar">
-                    <i class="bi bi-search"></i>
-                    <input type="text" id="search-input" placeholder="Buscar por materia o docente...">
+                <div class="program-filter">
+                    <select id="programas-select" class="filter-select">
+                        <option value="all">Programa</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN FILOSOFIA Y LETRAS">LICENCIATURA EN FILOSOFIA Y LETRAS</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN EDUCACION BASICA PRIMARIA - VIRTUAL">LICENCIATURA EN EDUCACION BASICA PRIMARIA - VIRTUAL</option>
+                        <option value="PROGRAMA DE FISICA">FISICA</option>
+                        <option value="PROGRAMA DE INGENIERIA AGRONOMICA">INGENIERIA AGRONOMICA</option>
+                        <option value="PROGRAMA DE INGENIERIA AMBIENTAL">INGENIERIA AMBIENTAL</option>
+                        <option value="PROGRAMA DE ARTES VISUALES">ARTES VISUALES</option>
+                        <option value="PROGRAMA DE DERECHO VESPERTINO">DERECHO VESPERTINO</option>
+                        <option value="PROGRAMA DE DISEÑO INDUSTRIAL">DISEÑO INDUSTRIAL</option>
+                        <option value="PROGRAMA DE MEDICINA VETERINARIA">MEDICINA VETERINARIA</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN INFORMATICA">LICENCIATURA EN INFORMATICA</option>
+                        <option value="PROGRAMA DE DISEÑO GRAFICO">DISEÑO GRAFICO</option>
+                        <option value="PROGRAMA DE ADMINISTRACION DE EMPRESAS">ADMINISTRACION DE EMPRESAS</option>
+                        <option value="PROGRAMA DE DERECHO DIURNO">DERECHO DIURNO</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN MUSICA">LICENCIATURA EN MUSICA</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN LENGUA CASTELLANA Y LITERATURA">LICENCIATURA EN LENGUA CASTELLANA Y LITERATURA</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN ESPAÑOL E INGLES">LICENCIATURA EN ESPAÑOL E INGLES</option>
+                        <option value="PROGRAMA DE ARQUITECTURA">ARQUITECTURA</option>
+                        <option value="PROGRAMA DE COMERCIO INTERNACIONAL">COMERCIO INTERNACIONAL</option>
+                        <option value="PROGRAMA DE ZOOTECNIA">ZOOTECNIA</option>
+                        <option value="PROGRAMA DE SOCIOLOGIA">SOCIOLOGIA</option>
+                        <option value="PROGRAMA DE GEOGRAFIA">GEOGRAFIA</option>
+                        <option value="PROGRAMA DE INGENIERIA AGROINDUSTRIAL">INGENIERIA AGROINDUSTRIAL</option>
+                        <option value="PROGRAMA DE INGENIERIA CIVIL">INGENIERIA CIVIL</option>
+                        <option value="PROGRAMA DE INGENIERIA ELECTRONICA">INGENIERIA ELECTRONICA</option>
+                        <option value="PROGRAMA DE CONTADURIA PUBLICA">CONTADURIA PUBLICA</option>
+                        <option value="PROGRAMA DE INGENIERIA DE SISTEMAS">INGENIERIA DE SISTEMAS</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN CIENCIAS SOCIALES">LICENCIATURA EN CIENCIAS SOCIALES</option>
+                        <option value="PROGRAMA DE PSICOLOGIA">PSICOLOGIA</option>
+                        <option value="PROGRAMA DE INGENIERIA EN PRODUCCION ACUICOLA">INGENIERIA EN PRODUCCION ACUICOLA</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN LENGUAS EXTRANJERAS CON ENFASIS EN INGLES">LICENCIATURA EN LENGUAS EXTRANJERAS CON ENFASIS EN INGLES</option>
+                        <option value="PROGRAMA DE MERCADEO">MERCADEO</option>
+                        <option value="PROGRAMA DE TECNOLOGIA EN PROMOCION DE LA SALUD">TECNOLOGIA EN PROMOCION DE LA SALUD</option>
+                        <option value="PROGRAMA DE ECONOMIA">ECONOMIA</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN ARTES VISUALES">LICENCIATURA EN ARTES VISUALES</option>
+                        <option value="PROGRAMA DE INGENIERIA AGROFORESTAL">INGENIERIA AGROFORESTAL</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL">LICENCIATURA EN CIENCIAS NATURALES Y EDUCACIÓN AMBIENTAL</option>
+                        <option value="PROGRAMA DE LICENCIATURA EN MATEMATICAS">LICENCIATURA EN MATEMATICAS</option>
+                        <option value="PROGRAMA DE BIOLOGIA">BIOLOGIA</option>
+                        <option value="PROGRAMA DE MEDICINA">MEDICINA</option>
+                        <option value="PROGRAMA DE QUIMICA">QUIMICA</option>
+                    </select>
                 </div>
                 <div class="filters">
                     <select id="period-filter" class="filter-select">
@@ -60,6 +108,10 @@
                         <input type="checkbox" id="elective-filter">
                         <label for="elective-filter">Sólo Electivas</label>
                     </div>
+                </div>
+                <div class="search-bar">
+                    <i class="bi bi-search"></i>
+                    <input type="text" id="search-input" placeholder="Buscar por materia o docente...">
                 </div>
             </div>
             <div id="materias-container" class="materias-list">

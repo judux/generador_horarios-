@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const periodFilter = document.getElementById('period-filter');
     const semesterFilter = document.getElementById('semester-filter');
     const electiveFilter = document.getElementById('elective-filter');
+    const programasSelect = document.getElementById('programas-select');
     const horarioGrid = document.getElementById('horario-grid');
     const clearScheduleBtn = document.getElementById('clear-schedule-btn');
 
@@ -45,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         if (materiasMostradas.length === 0) {
-            materiasContainer.innerHTML = '<p class="info-message">No se encontraron materias.</p>';
+            materiasContainer.innerHTML = '<p class="info-message">No se encontraron materias para los filtros seleccionados.</p>';
             return;
         }
 
@@ -222,17 +223,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const period = periodFilter.value;
         const semester = semesterFilter.value;
         const onlyElectives = electiveFilter.checked;
+        const selectedProgram = programasSelect.value;
 
         materiasMostradas = materiasCargadas.filter(m => {
-            // Filtro por término de búsqueda
+            // Program filter
+            const programMatch = selectedProgram === 'all' || selectedProgram === 'PROGRAMA DE LICENCIATURA EN INFORMATICA';
+            if (!programMatch) return false; // If it's another program, no subjects will match.
+
+            // Other filters
             const searchMatch = searchTerm === '' || 
-                                m.nombre.toLowerCase().includes(searchTerm) || 
+                                (m.nombre && m.nombre.toLowerCase().includes(searchTerm)) || 
                                 (m.docente && m.docente.toLowerCase().includes(searchTerm));
-
-            // Filtro por semestre
             const semesterMatch = semester === 'all' || m.semestre == semester;
-
-            // Filtro por período
             const periodMatch = period === 'all' || m.periodo == period;
             const electiveMatch = !onlyElectives || m.es_electiva;
 
@@ -288,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
         periodFilter.addEventListener('change', applyFilters);
         semesterFilter.addEventListener('change', applyFilters);
         electiveFilter.addEventListener('change', applyFilters);
+        programasSelect.addEventListener('change', applyFilters);
         
         document.getElementById('export-pdf-btn').addEventListener('click', () => alert('Función de exportar a PDF no implementada.'));
         document.getElementById('export-ics-btn').addEventListener('click', () => alert('Función de exportar a .ics no implementada.'));

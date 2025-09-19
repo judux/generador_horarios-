@@ -90,6 +90,7 @@ body {
 
 .search-bar {
     position: relative;
+    margin-top: 1rem;
 }
 
 .search-bar .bi-search {
@@ -424,6 +425,14 @@ body {
     }
 }
 
+.program-filter {
+    margin-bottom: 1rem;
+}
+
+#programas-select {
+    width: 100%;
+}
+
 .filters {
     display: flex;
     gap: 1rem;
@@ -447,12 +456,6 @@ body {
     background-repeat: no-repeat;
     background-position: right 1rem center;
     background-size: 1em;
-}
-
-.filter-select:focus {
-    outline: none;
-    border-color: var(--color-amarillo-udenar);
-    box-shadow: 0 0 0 3px rgba(253, 185, 19, 0.25);
 }
 
 .filter-checkbox {
@@ -503,17 +506,17 @@ body {
 .theme-switch-wrapper {
     display: flex;
     align-items: center;
-    margin-left: auto; /* Pushes the switch to the right */
+    margin-left: auto;
 }
 
 .theme-switch {
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 24px;
+    width: 60px; /* Ancho aumentado para los iconos */
+    height: 34px;
 }
 
-.theme-switch input {
+.theme-switch input { 
     opacity: 0;
     width: 0;
     height: 0;
@@ -526,21 +529,43 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: var(--color-gris-suave);
     transition: .4s;
-    border-radius: 24px;
+    border-radius: 34px;
 }
 
 .slider:before {
     position: absolute;
     content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
     background-color: white;
     transition: .4s;
     border-radius: 50%;
+}
+
+/* Iconos */
+.slider .sun-icon, .slider .moon-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    transition: opacity 0.4s, color 0.4s;
+}
+
+.slider .sun-icon {
+    left: 8px;
+    color: var(--color-amarillo-udenar);
+    opacity: 1;
+}
+
+.slider .moon-icon {
+    right: 8px;
+    color: white;
+    opacity: 0;
 }
 
 input:checked + .slider {
@@ -549,6 +574,15 @@ input:checked + .slider {
 
 input:checked + .slider:before {
     transform: translateX(26px);
+    background-color: #333;
+}
+
+input:checked + .slider .sun-icon {
+    opacity: 0;
+}
+
+input:checked + .slider .moon-icon {
+    opacity: 1;
 }
 
 /* --- Dark Mode Palette & Styles --- */

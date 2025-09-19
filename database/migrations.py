@@ -1,4 +1,3 @@
-
 """
 Scripts de migración y inicialización de la base de datos
 """

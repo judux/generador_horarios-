@@ -92,5 +92,3 @@ def obtener_detalles_materia(codigo_materia: str, db: DatabaseManager = Depends(
     if detalles is None:
         raise HTTPException(status_code=404, detail="Materia no encontrada")
     return detalles
-
-

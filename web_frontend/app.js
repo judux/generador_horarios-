@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const HORA_FIN = 22;
     const PALETA_PASTEL = ['#D1E7DD', '#FEF3D1', '#D1E9FE', '#F8D7DA', '#E9D5FF'];
 
-    let materiasCargadas = [];
-    let materiasMostradas = [];
+    let materiasCargadas = []; // Contendrá todas las materias, cargadas una sola vez
+    let materiasMostradas = []; // Las materias que se muestran tras aplicar filtros
     let materiasAgregadas = new Map();
     let horario = {};
     let colorIndex = 0;
@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const programasSelect = document.getElementById('programas-select');
     const horarioGrid = document.getElementById('horario-grid');
     const clearScheduleBtn = document.getElementById('clear-schedule-btn');
+    const allFilters = [searchInput, periodFilter, semesterFilter, electiveFilter, programasSelect];
 
     // --- API CALLS ---
     const fetchApi = async (url) => {
@@ -31,7 +32,6 @@ document.addEventListener('DOMContentLoaded', () => {
             return await response.json();
         } catch (error) {
             console.error("API Fetch Error: ", error);
-            materiasContainer.innerHTML = '<p class="info-message">Error al conectar con el servidor.</p>';
             return null;
         }
     };
@@ -41,12 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const renderMaterias = () => {
         materiasContainer.innerHTML = '';
-        if (materiasCargadas.length === 0) {
-            materiasContainer.innerHTML = '<div class="spinner-container"><div class="spinner"></div></div>';
-            return;
-        }
         if (materiasMostradas.length === 0) {
-            materiasContainer.innerHTML = '<p class="info-message">No se encontraron materias para los filtros seleccionados.</p>';
+            // Mensaje diferente si no hay resultados vs. si no se ha seleccionado el programa correcto
+            if (programasSelect.value !== 'all' && programasSelect.value !== 'PROGRAMA DE LICENCIATURA EN INFORMATICA') {
+                materiasContainer.innerHTML = '<p class="info-message">No hay materias para este programa en la versión actual.</p>';
+            } else {
+                materiasContainer.innerHTML = '<p class="info-message">No se encontraron materias para los filtros seleccionados.</p>';
+            }
             return;
         }
 
@@ -71,9 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const renderHorarioGrid = () => {
-        horarioGrid.innerHTML = ''; // Clear the grid completely
-
-        // 1. Create and place day headers
+        horarioGrid.innerHTML = '';
         DIAS.forEach((dia, index) => {
             const headerCell = document.createElement('div');
             headerCell.className = 'grid-header';
@@ -82,8 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
             headerCell.style.gridColumn = `${index + 2}`;
             horarioGrid.appendChild(headerCell);
         });
-
-        // 2. Create and place time labels
         for (let hora = HORA_INICIO; hora < HORA_FIN; hora++) {
             const timeCell = document.createElement('div');
             timeCell.className = 'grid-time';
@@ -93,20 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
             timeCell.style.gridColumn = '1';
             horarioGrid.appendChild(timeCell);
         }
-
-        // 3. Create background cells for alignment and borders
         for (let row = 2; row <= (HORA_FIN - HORA_INICIO) * 2 + 1; row++) {
             for (let col = 2; col <= DIAS.length + 1; col++) {
                 const bgCell = document.createElement('div');
                 bgCell.className = 'grid-background-cell';
                 bgCell.style.gridRow = `${row}`;
                 bgCell.style.gridColumn = `${col}`;
-                // Add a solid line for full hours
-                if ((row - 2) % 2 === 0) {
-                    bgCell.style.borderBottom = '1px solid var(--color-gris-suave)';
-                } else {
-                    bgCell.style.borderBottom = '1px dotted var(--color-gris-suave)';
-                }
+                bgCell.style.borderBottom = (row - 2) % 2 === 0 ? '1px solid var(--color-gris-suave)' : '1px dotted var(--color-gris-suave)';
                 horarioGrid.appendChild(bgCell);
             }
         }
@@ -128,8 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const [endHour, endMinute] = sesion.hora_fin.split(':').map(Number);
             let current = startHour * 60 + startMinute;
             const end = endHour * 60 + endMinute;
-
-            while(current < end) {
+            while (current < end) {
                 const h = Math.floor(current / 60);
                 const m = current % 60;
                 if (horario[`${sesion.dia}-${h}-${m}`]) {
@@ -139,22 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 current += 30;
             }
         }
-
         const color = getMateriaColor(materia.codigo);
         materia.color = color;
         materiasAgregadas.set(materia.codigo, materia);
-
         grupo.sesiones.forEach(sesion => {
             const diaIndex = DIAS.indexOf(sesion.dia);
             if (diaIndex === -1) return;
-
             const [startHour, startMinute] = sesion.hora_inicio.split(':').map(Number);
             const [endHour, endMinute] = sesion.hora_fin.split(':').map(Number);
-
             const rowStart = (startHour - HORA_INICIO) * 2 + (startMinute / 30) + 2;
             const rowEnd = (endHour - HORA_INICIO) * 2 + (endMinute / 30) + 2;
             const colStart = diaIndex + 2;
-
             const block = document.createElement('div');
             block.className = 'class-block';
             block.dataset.codigo = materia.codigo;
@@ -168,10 +152,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="remove-class-btn" data-codigo="${materia.codigo}"><i class="bi bi-x"></i></button>
             `;
             horarioGrid.appendChild(block);
-
             let current = startHour * 60 + startMinute;
             const end = endHour * 60 + endMinute;
-             while(current < end) {
+            while (current < end) {
                 const h = Math.floor(current / 60);
                 const m = current % 60;
                 horario[`${sesion.dia}-${h}-${m}`] = materia.codigo;
@@ -194,17 +177,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleAddClick = async (e) => {
         const addBtn = e.target.closest('.add-btn');
         if (!addBtn) return;
-        
         const card = addBtn.closest('.materia-card');
         const codigo = card.dataset.codigo;
         if (materiasAgregadas.has(codigo)) return;
-
         const materiaDetails = await fetchApi(`${API_URL}/materias/${codigo}`);
         if (!materiaDetails || !materiaDetails.grupos || materiaDetails.grupos.length === 0) {
             alert('Esta materia no tiene grupos disponibles.');
             return;
         }
-
         if (addMateriaToSchedule(materiaDetails, materiaDetails.grupos[0])) {
             card.classList.add('added');
             addBtn.disabled = true;
@@ -225,22 +205,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const onlyElectives = electiveFilter.checked;
         const selectedProgram = programasSelect.value;
 
-        materiasMostradas = materiasCargadas.filter(m => {
-            // Program filter
-            const programMatch = selectedProgram === 'all' || selectedProgram === 'PROGRAMA DE LICENCIATURA EN INFORMATICA';
-            if (!programMatch) return false; // If it's another program, no subjects will match.
-
-            // Other filters
-            const searchMatch = searchTerm === '' || 
-                                (m.nombre && m.nombre.toLowerCase().includes(searchTerm)) || 
-                                (m.docente && m.docente.toLowerCase().includes(searchTerm));
-            const semesterMatch = semester === 'all' || m.semestre == semester;
-            const periodMatch = period === 'all' || m.periodo == period;
-            const electiveMatch = !onlyElectives || m.es_electiva;
-
-            return searchMatch && semesterMatch && periodMatch && electiveMatch;
-        });
-
+        // Lógica de filtrado en el cliente
+        let materiasFiltradas = [];
+        if (selectedProgram === 'PROGRAMA DE LICENCIATURA EN INFORMATICA') {
+            materiasFiltradas = materiasCargadas.filter(m => {
+                const searchMatch = searchTerm === '' ||
+                    (m.nombre && m.nombre.toLowerCase().includes(searchTerm)) ||
+                    (m.docente && m.docente.toLowerCase().includes(searchTerm));
+                const semesterMatch = semester === 'all' || m.semestre == semester;
+                const periodMatch = period === 'all' || m.periodo == period;
+                const electiveMatch = !onlyElectives || m.es_electiva;
+                return searchMatch && semesterMatch && periodMatch && electiveMatch;
+            });
+        }
+        
+        materiasMostradas = materiasFiltradas;
         renderMaterias();
     };
 
@@ -256,43 +235,66 @@ document.addEventListener('DOMContentLoaded', () => {
     const init = async () => {
         // --- Theme Switch Logic ---
         const themeCheckbox = document.getElementById('theme-checkbox');
-
         const applyTheme = (theme) => {
             document.body.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
             themeCheckbox.checked = theme === 'dark';
         };
-
-        themeCheckbox.addEventListener('change', (e) => {
-            applyTheme(e.target.checked ? 'dark' : 'light');
-        });
-
-        // Apply saved theme on load
+        themeCheckbox.addEventListener('change', (e) => applyTheme(e.target.checked ? 'dark' : 'light'));
         const savedTheme = localStorage.getItem('theme') || 'light';
         applyTheme(savedTheme);
 
         // --- App Initialization ---
         renderHorarioGrid();
-        renderMaterias();
+        materiasContainer.innerHTML = '<div class="spinner-container"><div class="spinner"></div></div>';
+        allFilters.forEach(el => el.disabled = true);
+
         const fetchedMaterias = await fetchApi(`${API_URL}/materias`);
+        
+        allFilters.forEach(el => el.disabled = false);
+
         if (fetchedMaterias) {
             materiasCargadas = fetchedMaterias;
-            materiasMostradas = [...materiasCargadas];
-            renderMaterias();
+            materiasContainer.innerHTML = '<p class="info-message">Seleccione un programa para buscar materias.</p>';
+        } else {
+            materiasContainer.innerHTML = '<p class="info-message">Error al cargar las materias. Intente de nuevo más tarde.</p>';
         }
 
+        // Event listeners
         materiasContainer.addEventListener('click', handleAddClick);
         horarioGrid.addEventListener('click', handleRemoveClick);
         clearScheduleBtn.addEventListener('click', handleClear);
-
-        // Event listeners para los filtros
-        searchInput.addEventListener('keyup', applyFilters);
-        periodFilter.addEventListener('change', applyFilters);
-        semesterFilter.addEventListener('change', applyFilters);
-        electiveFilter.addEventListener('change', applyFilters);
-        programasSelect.addEventListener('change', applyFilters);
+        allFilters.forEach(el => {
+            const eventType = (el.tagName === 'INPUT' && el.type === 'text') ? 'input' : 'change';
+            el.addEventListener(eventType, applyFilters);
+        });
         
-        document.getElementById('export-pdf-btn').addEventListener('click', () => alert('Función de exportar a PDF no implementada.'));
+        const exportScheduleToPDF = () => {
+            const { jsPDF } = window.jspdf;
+            const scheduleContainer = document.getElementById('horario-grid-container');
+            html2canvas(scheduleContainer, { scale: 2, useCORS: true, backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-fondo') })
+                .then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+                    const pdf = new jsPDF({ orientation: 'landscape', unit: 'pt', format: 'letter' });
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    const ratio = canvas.width / canvas.height;
+                    let newCanvasWidth = pdfWidth - 40;
+                    let newCanvasHeight = newCanvasWidth / ratio;
+                    if (newCanvasHeight > pdfHeight - 60) {
+                        newCanvasHeight = pdfHeight - 60;
+                        newCanvasWidth = newCanvasHeight * ratio;
+                    }
+                    const x = (pdfWidth - newCanvasWidth) / 2;
+                    const y = 40;
+                    pdf.setFontSize(18);
+                    pdf.text('Mi Horario', pdfWidth / 2, 25, { align: 'center' });
+                    pdf.addImage(imgData, 'PNG', x, y, newCanvasWidth, newCanvasHeight);
+                    pdf.save('horario.pdf');
+                });
+        };
+
+        document.getElementById('export-pdf-btn').addEventListener('click', exportScheduleToPDF);
         document.getElementById('export-ics-btn').addEventListener('click', () => alert('Función de exportar a .ics no implementada.'));
     };
 

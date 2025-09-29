@@ -23,10 +23,10 @@ class MateriaService:
         self.sesion_repo = SesionRepository(db_manager)
         self.validacion_service = ValidacionService()
     
-    def obtener_todas_las_materias(self, semestre: Optional[int] = None, es_electiva: Optional[bool] = None) -> List[Dict[str, Any]]:
-        """Obtiene todas las materias con sus grupos y sesiones organizadas, con opción de filtro."""
+    def obtener_todas_las_materias(self) -> List[Dict[str, Any]]:
+        """Obtiene todas las materias con sus grupos y sesiones organizadas."""
         try:
-            materias = self.materia_repo.obtener_todas(semestre=semestre, es_electiva=es_electiva)
+            materias = self.materia_repo.obtener_todas()
             resultado = []
             
             for materia in materias:

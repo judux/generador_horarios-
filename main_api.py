@@ -57,7 +57,7 @@ def read_root():
 
 
 @app.get("/materias")
-def obtener_materias_filtradas(db: DatabaseManager = Depends(get_db_manager)):
+def obtener_materias(db: DatabaseManager = Depends(get_db_manager)):
     """
     Obtiene una lista de todas las materias.
     """

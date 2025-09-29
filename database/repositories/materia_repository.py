@@ -12,27 +12,12 @@ logger = logging.getLogger(__name__)
 class MateriaRepository(BaseRepository):
     """Repositorio para gestionar materias en la base de datos"""
     
-    def obtener_todas(self, semestre: Optional[int] = None, es_electiva: Optional[bool] = None) -> List[Materia]:
-        """Obtiene todas las materias, con opción de filtrar por semestre y si es electiva."""
+    def obtener_todas(self) -> List[Materia]:
+        """Obtiene todas las materias."""
         
-        query = "SELECT codigo_materia, nombre_materia, creditos, semestre, es_electiva, periodo FROM Materias"
-        params = []
-        conditions = []
-
-        if semestre is not None:
-            conditions.append("semestre = ?")
-            params.append(semestre)
+        query = "SELECT codigo_materia, nombre_materia, creditos, semestre, es_electiva, periodo FROM Materias ORDER BY nombre_materia"
         
-        if es_electiva is not None:
-            conditions.append("es_electiva = ?")
-            params.append(es_electiva)
-
-        if conditions:
-            query += " WHERE " + " AND ".join(conditions)
-
-        query += " ORDER BY nombre_materia"
-        
-        resultados = self._ejecutar_query(query, tuple(params))
+        resultados = self._ejecutar_query(query)
         
         return [
             Materia(
